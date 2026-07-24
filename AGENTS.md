@@ -1,53 +1,79 @@
 # AGENTS.md
 
-## Mission
+## Primary objective
 
-Audit a restricted Gaussian Weil-positivity computation carefully and
-reproducibly. The repository is exploratory work, not a proof of the Riemann
-Hypothesis.
+Investigate the question:
 
-## Mandatory starting point
+> Does every non-trivial zero of the Riemann zeta function satisfy
+> Re(rho) = 1/2?
 
-Read these files before proposing research changes:
+A valid proof or counterexample is the ultimate objective. The repository does
+not currently contain either.
+
+## Required startup reading
+
+Read, in order:
 
 1. `README.md`
-2. `NEXT_STEPS.md`
-3. `docs/AUDIT_PLAN.md`
-4. `docs/RH_Weil_Gaussian_Handoff.md`
+2. `RESEARCH_MAP.md`
+3. `NEXT_STEPS.md`
 
-Then work on the first incomplete stage in `NEXT_STEPS.md`. The immediate
-priority is the line-by-line mathematical derivation of Q(t), not a larger
-numerical sweep.
+Read route-specific documents only after selecting a route.
 
-## Rules for AI assistants
+## Before working on an approach
 
-- Never describe this project as a proof or near-proof of RH.
-- Distinguish established literature, reproduced computation, candidate claims,
-  and unestablished statements.
-- Do not treat the zero-side Gaussian terms as unconditionally nonnegative;
-  zero ordinates are real only under RH.
-- Do not imply that positivity for this one-parameter family proves Weil's
-  criterion for every admissible test function.
-- Do not call the CSV verifier an independent mathematical verifier. It checks
-  structure and exact coverage only.
-- State every Fourier convention, domain restriction, assumption, and error
-  bound explicitly.
-- Prefer primary mathematical sources and official software documentation.
-- Preserve the original supplied artifacts; add corrections separately.
-- Record commands, dependency versions, hashes, and reproducible outputs.
-- Treat a counterexample or discovered flaw as a successful research result.
-- Use a focused branch and pull request for each substantial change.
+State:
 
-## Definition of useful progress
+- the exact target claim;
+- the proved logical connection from that claim to RH;
+- the closest known literature;
+- the first genuinely new and unproved step;
+- an early falsification test;
+- every assumption;
+- the evidence level.
 
-Useful progress means one of the following:
+If these cannot be stated, do not launch a large derivation or computation.
 
-- a derivation step has been independently justified;
-- a numerical bound has been rigorously proved;
-- a claim has been falsified or narrowed;
-- an independent implementation has reproduced a result;
-- an unresolved proof obligation has been made more precise;
-- an expert review has been recorded and addressed.
+## Non-negotiable rules
 
-Generating more persuasive prose or testing more t-values without resolving a
-listed proof obligation is not useful progress.
+- Do not present a known equivalence or reformulation as progress by itself.
+- Do not infer an infinite statement from finite verification without a proved
+  bridge.
+- Do not substitute one test family for a universal quantifier.
+- Do not use RH, explicitly or implicitly, inside a purported proof of RH.
+- Do not treat agreement among AI systems as mathematical verification.
+- Do not conceal failed approaches or corrections.
+- Preserve original artifacts and add critiques separately.
+- Cite primary sources for material theorem dependencies.
+- Label proof, rigorous computation, numerical evidence, heuristic, and
+  speculation distinctly.
+- Use a focused branch or pull request for each route.
+
+## How to collaborate
+
+- One AI proposes a precise lemma.
+- Another independently tries to disprove it.
+- Another checks its literature and dependencies.
+- Another reproduces any computation independently.
+- Summarize disagreements rather than forcing consensus.
+
+## Current warning
+
+The Gaussian/Guinand–Weil computation is one explored route. Its finite
+certificate is not a proof of RH and is not the repository's overall research
+program. Do not continue extending its numerical range unless a precise
+argument explains how doing so could bridge to the full RH claim.
+
+## Definition of progress
+
+Useful progress includes:
+
+- a new lemma with a correct proof and a demonstrated implication toward RH;
+- a counterexample that eliminates a proposed route;
+- a hidden assumption or circular step identified;
+- a known obstruction made precise;
+- an independent rigorous reproduction;
+- a genuinely new intermediate theorem confirmed by expert review.
+
+More algebra, citations, code, or numerical data are not progress unless they
+resolve a stated obstacle.
