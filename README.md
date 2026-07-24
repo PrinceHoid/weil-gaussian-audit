@@ -2,9 +2,9 @@
 
 ## The question
 
-> **Does every non-trivial zero \(\rho\) of the Riemann zeta function satisfy**
+> **Does every non-trivial zero ρ of the Riemann zeta function satisfy**
 >
-> # \(\operatorname{Re}(\rho)=\tfrac12\)?
+> # `Re(ρ) = 1/2`?
 
 This is the **Riemann Hypothesis (RH)**. It remains unsolved.
 
