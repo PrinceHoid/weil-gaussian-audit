@@ -3,6 +3,25 @@
 Independent reproduction and audit of a restricted Gaussian Weil-positivity
 computation related to the Riemann zeta function.
 
+> [!CAUTION]
+> ## CURRENT RESEARCH PRIORITY — START HERE
+>
+> **Do not extend the numerical sweep or claim progress toward RH yet.**
+>
+> The next task is to derive the displayed functional \(Q(t)\) line by line
+> from one fixed Guinand–Weil explicit-formula convention. Every constant,
+> sign, Fourier normalization, admissibility condition, and assumption must be
+> identified and checked against primary mathematical sources.
+>
+> After that, proceed in this order:
+>
+> 1. audit the interval-arithmetic implementation and every error bound;
+> 2. reproduce the calculation independently using established ball arithmetic;
+> 3. obtain outside review from analytic-number-theory and rigorous-numerics specialists.
+>
+> Read **[NEXT_STEPS.md](NEXT_STEPS.md)** before beginning work. AI assistants
+> must also follow **[AGENTS.md](AGENTS.md)**.
+
 > [!IMPORTANT]
 > This repository does **not** contain a proof of the Riemann Hypothesis.
 > It contains an AI-assisted exploratory calculation and a candidate
@@ -76,4 +95,3 @@ mathematical lower bounds.
 3. Provide reproducible commands and software versions.
 4. Use branches and pull requests for proposed changes.
 5. Do not describe this repository as an RH proof.
-
