@@ -1,97 +1,70 @@
-# Weil Gaussian Audit
+# Is every non-trivial zero of the Riemann zeta function on the critical line?
 
-Independent reproduction and audit of a restricted Gaussian Weil-positivity
-computation related to the Riemann zeta function.
+## The question
 
-> [!CAUTION]
-> ## CURRENT RESEARCH PRIORITY — START HERE
+> **Does every non-trivial zero \(\rho\) of the Riemann zeta function satisfy**
 >
-> **Do not extend the numerical sweep or claim progress toward RH yet.**
->
-> The next task is to derive the displayed functional \(Q(t)\) line by line
-> from one fixed Guinand–Weil explicit-formula convention. Every constant,
-> sign, Fourier normalization, admissibility condition, and assumption must be
-> identified and checked against primary mathematical sources.
->
-> After that, proceed in this order:
->
-> 1. audit the interval-arithmetic implementation and every error bound;
-> 2. reproduce the calculation independently using established ball arithmetic;
-> 3. obtain outside review from analytic-number-theory and rigorous-numerics specialists.
->
-> Read **[NEXT_STEPS.md](NEXT_STEPS.md)** before beginning work. AI assistants
-> must also follow **[AGENTS.md](AGENTS.md)**.
+> # \(\operatorname{Re}(\rho)=\tfrac12\)?
 
-> [!IMPORTANT]
-> This repository does **not** contain a proof of the Riemann Hypothesis.
-> It contains an AI-assisted exploratory calculation and a candidate
-> computer-assisted lemma whose mathematical and numerical proof obligations
-> still require independent expert review.
+This is the **Riemann Hypothesis (RH)**. It remains unsolved.
 
-## Why this repository exists
+## Mission of this repository
 
-The project began with the question:
+Use collaborating humans and AI systems to investigate the question above.
 
-> Is the real part of every non-trivial zero of the Riemann zeta function
-> equal to \(1/2\)?
+The intended outcome is one of:
 
-That question is exactly the Riemann Hypothesis, which remains open. Several AI
-systems helped explore a one-parameter Gaussian test family and produced a
-finite interval certificate. This repository preserves that work while making
-its claims, limitations, and verification status explicit.
+1. a valid proof of RH;
+2. a valid counterexample disproving RH; or
+3. a rigorously justified new intermediate result that materially advances one
+   of those goals.
 
-The maintainers are technically trained non-specialists. Contributions from
-mathematicians and rigorous-numerics practitioners are welcome, especially
-when they include reproducible derivations or tests.
+This is intentionally ambitious. No current file in this repository proves or
+disproves RH.
 
-## What has been checked
+## Required questions for every proposed approach
 
-- The supplied CSV contains 11,720 interval rows.
-- An exact-rational structural check reports that their union covers
-  \([11,1737]\).
-- The supplied sweep was previously reproduced in the environment recorded in
-  `docs/REPRODUCTION_LOG.txt`.
-- Selected prime-side and zero-side numerical evaluations were reported to
-  agree closely.
+Before doing substantial work, answer:
 
-These checks do **not** independently prove every lower bound in the CSV.
+1. **What exact claim are you trying to prove?**
+2. **If the claim is proved, does it prove RH, disprove RH, or only establish an
+   intermediate result? Show the logical implication.**
+3. **What part is genuinely new rather than a known theorem, reformulation, or
+   finite verification?**
+4. **What is the first step that is not currently proved?**
+5. **What observation could falsify the approach early?**
 
-## What has not been established
+Put each distinct approach on its own branch or pull request. Record failed
+approaches as carefully as successful ones so later collaborators do not repeat
+them.
 
-- The implementation bounds have not received independent expert validation.
-- The claimed infinite-tail theorem is not included as executable proof.
-- Positivity for this single Gaussian family would not establish the universal
-  Weil criterion and therefore would not prove RH.
-- Statements that infer unconditional positivity from the zero-side Gaussian
-  sum are circular unless RH is assumed.
+## Current research status
 
-See [docs/AUDIT_PLAN.md](docs/AUDIT_PLAN.md) for the verification roadmap and
-[docs/RH_Weil_Gaussian_Handoff.md](docs/RH_Weil_Gaussian_Handoff.md) for the
-full handoff memorandum.
+The repository began with an AI-generated Gaussian/Guinand–Weil computation.
+It produced a reproducible finite interval data set, but subsequent review
+showed that this route currently proves far less than RH and may reproduce a
+consequence of already published zero verification.
 
-## Repository layout
+That work is preserved as an **explored route**, not as the mission of the
+repository and not as a claimed advance toward RH. See
+[RESEARCH_MAP.md](RESEARCH_MAP.md).
 
-```text
-data/     supplied certificate data
-docs/     handoff, reproduction record, and audit notes
-src/      supplied certificate generator
-tools/    independent structural verifier
-```
+## Start here
 
-## Run the structural verifier
+- Humans: read [RESEARCH_MAP.md](RESEARCH_MAP.md) and
+  [NEXT_STEPS.md](NEXT_STEPS.md).
+- AI assistants: also follow [AGENTS.md](AGENTS.md).
+- Historical Gaussian materials remain under `docs/`, `src/`, `data/`, and
+  `tools/`.
 
-```bash
-python tools/verify_certificate_csv.py data/certificates.csv
-```
+## Standards
 
-The verifier checks parsing, interval widths, nonnegative reported margins,
-and exact rational coverage. It deliberately does not certify the underlying
-mathematical lower bounds.
-
-## Collaboration rules
-
-1. Keep claims proportional to evidence.
-2. Label assumptions and distinguish numerical evidence from proof.
-3. Provide reproducible commands and software versions.
-4. Use branches and pull requests for proposed changes.
-5. Do not describe this repository as an RH proof.
+- Never label a known equivalence as a proof.
+- Never extrapolate a finite computation to an infinite statement without a
+  proved bridge.
+- State assumptions explicitly.
+- Distinguish proof, rigorous computation, numerical evidence, heuristic, and
+  speculation.
+- Prefer primary sources.
+- Treat a discovered flaw or dead end as useful progress.
+- Require independent adversarial review of any claimed breakthrough.
