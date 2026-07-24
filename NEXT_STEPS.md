@@ -1,101 +1,59 @@
-# NEXT RESEARCH STEPS
+# What collaborators should do next
 
-> [!CAUTION]
-> **This file defines the current research program.**
->
-> Do not skip directly to larger computations, stronger claims, or publicity.
-> Complete the stages below in order and record evidence for every conclusion.
+## Immediate task
 
-## Stage 1 — Freeze and verify the mathematics
+Do not assume the existing Gaussian route is the project.
 
-**This is the immediate next task.**
+Each collaborator should propose or audit **one clearly defined route** connected
+to the original question:
 
-Produce a readable, line-by-line derivation of the functional
+> Does every non-trivial zero of the Riemann zeta function have real part 1/2?
 
-```text
-Q(t) = pole term + prime-power term + archimedean term
-```
+## For a new route
 
-from one explicitly stated version of the Guinand–Weil formula.
+Create a short proposal containing:
 
-The derivation must:
+1. **Claim:** the exact statement to be proved.
+2. **Connection to RH:** a proof showing what success would imply.
+3. **Prior art:** the closest known results and how this differs.
+4. **Novel step:** the first genuinely new lemma or construction.
+5. **Failure test:** the quickest way to expose a contradiction or known
+   obstruction.
+6. **Dependencies:** assumptions, computations, and external theorems used.
+7. **Status:** speculation, heuristic, numerical evidence, candidate lemma, or
+   proof.
 
-1. state the exact explicit-formula theorem and admissible function space;
-2. state one Fourier-transform convention;
-3. derive the transform of the chosen Gaussian family;
-4. derive every constant, sign, factor of two, and factor of pi in Q(t);
-5. prove or precisely source the Gaussian family's admissibility;
-6. state the zero-side identity without assuming RH;
-7. separately show what simplification becomes valid if RH is assumed;
-8. identify every step that still requires expert confirmation;
-9. cite primary sources wherever practical;
-10. avoid using the numerical program as evidence for the derivation it implements.
+Do not begin a large computation until these seven points are written down.
 
-**Completion evidence:** a short derivation document that another reviewer can
-check line by line without running the code.
+## For an existing route
 
-## Stage 2 — Audit the existing numerical implementation
+Audit the earliest unproved step, not the most impressive conclusion.
 
-After Stage 1 is stable, inspect every claimed rigorous bound in
-`src/rigorous_weil_sweep.py`.
+- Check every implication leading back to RH.
+- Look for a hidden RH assumption.
+- Look for a finite-to-infinite leap.
+- Look for a restricted test family being substituted for a universal class.
+- Check whether the result is already known.
+- Produce counterexamples to intermediate claims when possible.
 
-At minimum, verify:
+## Current routes
 
-- cosine argument reduction;
-- floating-point and NumPy summation bounds;
-- logarithm and Taylor-series remainders;
-- Binet/digamma remainder bounds;
-- prime-power truncation tails;
-- archimedean quadrature and tail bounds;
-- the global second-derivative bound;
-- all domain restrictions and rounding assumptions;
-- the mismatch between prose claims and generated data.
+The route index is [RESEARCH_MAP.md](RESEARCH_MAP.md). Add a route there only
+after its proposal answers the seven questions above.
 
-**Completion evidence:** a checklist linking each code claim to a proof,
-counterexample, or clearly labeled unresolved obligation.
+The Gaussian/Guinand–Weil route is preserved as Route 001. Its current finite
+certificate does not prove RH, and further work on it must identify a credible
+bridge to the full universal criterion before expanding the computation.
 
-## Stage 3 — Build an independent implementation
+## Breakthrough protocol
 
-Reimplement the calculation without copying the custom interval core. Prefer a
-mature ball-arithmetic system such as FLINT/Arb through `python-flint`.
+A claimed proof or disproof must not be merged as accepted merely because
+several AI systems agree. It must receive:
 
-The independent program should:
+1. a line-by-line dependency map;
+2. independent attempts to falsify every new lemma;
+3. checks for circular use of RH;
+4. verification of all cited theorems from primary sources;
+5. review by qualified human mathematicians.
 
-- recompute every interval lower bound;
-- verify exact coverage;
-- reject malformed data, NaNs, and infinities;
-- print a deterministic verification transcript;
-- record dependency versions and artifact hashes;
-- keep certificate generation separate from certificate verification.
-
-**Completion evidence:** two independent implementations that agree, with the
-second using a smaller and better-documented trust base.
-
-## Stage 4 — Seek outside review
-
-Ask for review from people with relevant expertise:
-
-- analytic number theory and explicit formulas;
-- Weil's criterion and admissible test-function spaces;
-- validated or rigorous numerics;
-- floating-point error analysis;
-- Arb/FLINT ball arithmetic.
-
-Invite reviewers to find errors. A discovered flaw is useful progress and
-should be documented.
-
-**Completion evidence:** review comments, corrections, and responses preserved
-in issues or pull requests.
-
-## Claim discipline
-
-At every stage:
-
-- This repository is **not a proof of RH**.
-- Reproduction is not the same as proof.
-- Exact interval coverage does not validate the bound attached to each row.
-- Positivity for one Gaussian family does not satisfy Weil's universal
-  quantifier.
-- Do not infer unconditional positivity from the zero-side Gaussian expression
-  by treating zero ordinates as real; that assumes RH.
-- Label results as established, reproduced, candidate, or unestablished.
+Until then, label it **candidate**.
