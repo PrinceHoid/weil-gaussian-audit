@@ -39,7 +39,7 @@ scalar-aligned comparison with the prolate proxy k_lambda
 local-uniform transform convergence on |Im z| < 1/2
         |
         v
-published finite real-zero theorem + Hurwitz
+published continuum real-zero theorem + Hurwitz
         |
         v
 RH
