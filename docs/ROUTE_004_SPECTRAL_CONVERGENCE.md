@@ -99,22 +99,19 @@ A failed finite test would not disprove RH or an asymptotic rate; it would rejec
 ## Dependency map
 
 ```text
-Exact Q_c and normalization
+Exact continuum operator, centering, and normalization
         |
         v
-Finite ground-state hypotheses for all large c
+Simple/even continuum ground states along an unbounded sequence
         |
         v
-Uniform off-axis bounds / normal-family compactness   <-- first target
+Proxy comparison or another zeta-specific compactness theorem
         |
         v
-Identification and uniqueness of subsequential limit
+Local-uniform convergence to Xi on |Im z| < 1/2
         |
         v
-Multiplicity-preserving zero convergence
-        |
-        v
-Finite real-zero theorem + Hurwitz/Rouché
+Continuum real-zero theorem + Hurwitz/Rouché
         |
         v
 RH
@@ -122,9 +119,9 @@ RH
 
 ## Known result, computation, heuristic, and new claim
 
-- **Known conditional finite result:** the finite transform has only real zeros when the specified self-adjoint ground-state hypotheses hold.
+- **Known conditional results:** the continuum and finite transforms have only real zeros under their respective self-adjoint ground-state hypotheses.
 - **Finite computation:** reported truncated matrices reproduce many low zeta zeros to high precision for selected cutoffs and discretizations.
-- **Heuristic:** increasing the prime cutoff appears to make the finite zeros converge to zeta zeros.
+- **Heuristic:** increasing the support cutoff appears to make selected finite zeros converge to zeta zeros.
 - **Open problem:** convergence to every zeta zero has not been proved.
 - **Repository-level result:** a standard-analysis transfer lemma reduces the bridge to `||b_lambda theta_lambda-k_lambda||_2 = O(lambda^(-1/2))` on the critical strip, and an explicit convolution example proves that finite real-rootedness, positivity, and a uniform gap do not supply compactness abstractly. These claims require independent review and do not prove RH.
 
@@ -135,7 +132,7 @@ RH
 3. Implement `k_lambda` with a verified high-precision prolate routine and cutoff-free/interval-certified Weil matrices.
 4. Measure and then prove the scalar-aligned error `E_lambda = inf_b ||b theta_lambda-k_lambda||_2`.
 5. Attack the sufficient rate `E_lambda = O(lambda^(-1/2))` using the semilocal trace formula without assuming global Weil positivity.
-6. Continue off-axis falsification tests on `|Im z|<1/2`, independently refining `N`, archimedean cutoff, precision, and the prime/support cutoff.
+6. Continue off-axis falsification tests on `|Im z|<1/2`, independently refining `N`, archimedean cutoff, precision, and the support cutoff.
 
 ## First research-cycle result
 
