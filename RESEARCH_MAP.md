@@ -145,6 +145,47 @@ scaled computation.
 **Detailed audit:**
 [`docs/ROUTE_003_COUNTABLE_DETERMINING_FAMILIES.md`](docs/ROUTE_003_COUNTABLE_DETERMINING_FAMILIES.md).
 
+## Route 004 — Spectral convergence of truncated Weil forms
+
+**Status:** Active; precise convergence target identified, with no theorem yet.
+
+**Idea:** For prime cutoff `c`, study the normalized transform `F_c` of the
+even lowest-eigenvalue state of the Connes–van Suijlekom truncated Weil form.
+Under the finite operator hypotheses, every zero of `F_c` lies on the real
+Fourier axis. Prove that these transforms converge locally uniformly to the
+completed zeta function `Xi`, up to a controlled zero-free factor.
+
+**Why it could reach RH:** Local uniform convergence plus the finite real-zero
+theorem would allow Hurwitz's theorem or Rouché's theorem to transfer the
+real-zero property to `Xi`. This bridge is conditional on the finite
+ground-state hypotheses, correct normalization, unique identification of the
+limit, and multiplicity control.
+
+**Known versus conjectural:** Finite criticality under stated hypotheses is a
+known result. High-precision agreement of many low zeros is finite computation.
+Convergence as the cutoff tends to infinity remains open. No new theorem or RH
+claim is made here.
+
+**First unresolved step:** Establish cutoff-independent compactness. The
+eigenfunctions live on intervals of length `log c`; unit `L^2` norm and
+finite support give only a bound that can grow like
+`sqrt(log c) exp((log c)|Im z|/2)`. A uniform localization,
+exponential-moment, resolvent-convergence, or equivalent estimate is required
+before one may take a locally uniform subsequential limit.
+
+**Early falsification:** Track the normalization denominator, endpoint mass,
+exponential moments, off-axis transform size on fixed compact rectangles, and
+the ground-state spectral gap. The route in its present form fails if the
+normalized family is unbounded on a fixed compact set, mass escapes to the
+expanding endpoints, different cutoff subsequences have different limits, or
+the selected ground state loses isolation/simplicity.
+
+**After compactness:** Prove uniqueness: every subsequential limit must be
+`Xi` up to a zero-free factor. Compactness by itself is not enough.
+
+**Detailed program:**
+[`docs/ROUTE_004_SPECTRAL_CONVERGENCE.md`](docs/ROUTE_004_SPECTRAL_CONVERGENCE.md).
+
 ## Proposed future routes
 
 Add a new numbered route only after completing the proposal template in
