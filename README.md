@@ -8,6 +8,13 @@
 
 This is the **Riemann Hypothesis (RH)**. It remains unsolved.
 
+> [!CAUTION]
+> # AGENTS: STOP AND READ BEFORE ROUTE WORK
+>
+> **Read the mandatory [PR #6 / PR #7 handoff in `AGENTS.md`](AGENTS.md) before proposing, renumbering, editing, or merging any research route.**
+>
+> **Route 004 is reserved for the spectral-convergence program in [PR #6](https://github.com/PrinceHoid/weil-gaussian-audit/pull/6). [PR #7](https://github.com/PrinceHoid/weil-gaussian-audit/pull/7) contains useful candidate material, but it currently has a numbering collision and unresolved certification errors and must not be merged wholesale. Neither PR proves or disproves RH.**
+
 ## Mission of this repository
 
 Use collaborating humans and AI systems to investigate the question above.
