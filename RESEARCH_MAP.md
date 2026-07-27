@@ -166,25 +166,29 @@ known result. High-precision agreement of many low zeros is finite computation.
 Convergence as the cutoff tends to infinity remains open. No new theorem or RH
 claim is made here.
 
-**First unresolved step:** Establish cutoff-independent compactness. The
-eigenfunctions live on intervals of length `log c`; unit `L^2` norm and
-finite support give only a bound that can grow like
-`sqrt(log c) exp((log c)|Im z|/2)`. A uniform localization,
-exponential-moment, resolvent-convergence, or equivalent estimate is required
-before one may take a locally uniform subsequential limit.
+**First unresolved step:** Compare the true continuum ground state
+`theta_lambda` with the Connes prolate proxy `k_lambda`. The proxy transform is
+already known to converge to `Xi` on closed substrips of `|Im z|<1/2`. The
+repository's critical-strip transfer lemma shows that the scalar-aligned bound
+`||b_lambda theta_lambda-k_lambda||_2 = O(lambda^(-1/2))` would transfer this
+convergence. Simplicity and evenness of the continuum lowest eigenvalue must
+also be proved along an unbounded cutoff sequence.
 
-**Early falsification:** Track the normalization denominator, endpoint mass,
-exponential moments, off-axis transform size on fixed compact rectangles, and
-the ground-state spectral gap. The route in its present form fails if the
-normalized family is unbounded on a fixed compact set, mass escapes to the
-expanding endpoints, different cutoff subsequences have different limits, or
-the selected ground state loses isolation/simplicity.
+**Early falsification:** Certify `E_lambda = inf_b ||b theta_lambda-k_lambda||_2`
+and test whether `lambda^(1/2) E_lambda` remains bounded. Also track centered
+off-axis transforms for `|Im z|<1/2`, parity, branch identity, and independent
+`N`, archimedean-cutoff, precision, and support-cutoff refinements. A failed
+rate disproves this transfer mechanism, not RH.
 
-**After compactness:** Prove uniqueness: every subsequential limit must be
-`Xi` up to a zero-free factor. Compactness by itself is not enough.
+**Rigorous cycle-one result:** A critical-strip transfer lemma and explicit
+convolution counterexample are recorded. The counterexample proves that
+positivity, a simple even ground state, a uniform gap, compact support, and
+real finite zeros do not imply convergence without zeta-specific control.
 
 **Detailed program:**
-[`docs/ROUTE_004_SPECTRAL_CONVERGENCE.md`](docs/ROUTE_004_SPECTRAL_CONVERGENCE.md).
+[`docs/ROUTE_004_SPECTRAL_CONVERGENCE.md`](docs/ROUTE_004_SPECTRAL_CONVERGENCE.md)
+and
+[`docs/ROUTE_004_CRITICAL_STRIP_BRIDGE.md`](docs/ROUTE_004_CRITICAL_STRIP_BRIDGE.md).
 
 ## Proposed future routes
 
