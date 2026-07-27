@@ -89,6 +89,13 @@ centered Gaussians with `0 < a <= 1`, but not narrower ones. Signed combinations
 and translation derivatives can enlarge the approximation span, but restricted
 positivity does not control their negative coefficients.
 
+**Corroboration (not human verification):** a 27 July 2026 AI audit
+machine-checked every separator and mixing identity in exact symbolic
+arithmetic and reproduced the Route 001 sweep bit-for-bit in a second
+environment. See
+[`docs/INDEPENDENT_AUDIT_2026-07-27.md`](docs/INDEPENDENT_AUDIT_2026-07-27.md).
+Human review remains required; status is unchanged.
+
 **Candidate strengthening from Route 003 audit:** for every real `c`,
 
 ```text
