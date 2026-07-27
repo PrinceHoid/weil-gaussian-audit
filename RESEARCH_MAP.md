@@ -147,9 +147,9 @@ scaled computation.
 
 ## Route 004 — Spectral convergence of truncated Weil forms
 
-**Status:** Active; precise convergence target identified, with no theorem yet.
+**Status:** Active; a conditional transfer lemma and an abstract obstruction are recorded, while all zeta-specific convergence hypotheses remain open.
 
-**Idea:** For prime cutoff `c`, study the normalized transform `F_c` of the
+**Idea:** For support cutoff `c=lambda^2`, controlling prime powers `p^m<=c`, study the normalized transform `F_c` of the
 even lowest-eigenvalue state of the Connes–van Suijlekom truncated Weil form.
 Under the finite operator hypotheses, every zero of `F_c` lies on the real
 Fourier axis. Prove that these transforms converge locally uniformly to the
@@ -157,9 +157,8 @@ completed zeta function `Xi`, up to a controlled zero-free factor.
 
 **Why it could reach RH:** Local uniform convergence plus the finite real-zero
 theorem would allow Hurwitz's theorem or Rouché's theorem to transfer the
-real-zero property to `Xi`. This bridge is conditional on the finite
-ground-state hypotheses, correct normalization, unique identification of the
-limit, and multiplicity control.
+real-zero property to `Xi`. This bridge is conditional on the finite or continuum ground-state hypotheses,
+correct normalization, and unique identification of the limit.
 
 **Known versus conjectural:** Finite criticality under stated hypotheses is a
 known result. High-precision agreement of many low zeros is finite computation.
@@ -177,8 +176,9 @@ also be proved along an unbounded cutoff sequence.
 **Early falsification:** Certify `E_lambda = inf_b ||b theta_lambda-k_lambda||_2`
 and test whether `lambda^(1/2) E_lambda` remains bounded. Also track centered
 off-axis transforms for `|Im z|<1/2`, parity, branch identity, and independent
-`N`, archimedean-cutoff, precision, and support-cutoff refinements. A failed
-rate disproves this transfer mechanism, not RH.
+`N`, archimedean-cutoff, precision, and support-cutoff refinements. A rigorously established asymptotic failure of this rate rejects this
+sufficient transfer condition, not RH. A finite trend is diagnostic evidence,
+not a disproof of a big-O claim.
 
 **Rigorous cycle-one result:** A critical-strip transfer lemma and explicit
 convolution counterexample are recorded. The counterexample proves that
