@@ -4,7 +4,7 @@
 
 ## Plain-language idea
 
-For each prime cutoff `c`, recent work constructs a finite/truncated spectral problem. Under stated ground-state hypotheses, the transform associated with its lowest eigenfunction has zeros only on the critical line. Computations suggest that, as more primes are included, these finite zeros approach zeros of the Riemann zeta function.
+For each support cutoff `c=lambda^2`, controlling prime powers `p^m<=c`, recent work constructs a localized or finite spectral problem. The value `c` need not itself be prime. Under stated ground-state hypotheses, the transform associated with its lowest eigenfunction has zeros only on the critical line. Computations suggest that, as more primes are included, these finite zeros approach zeros of the Riemann zeta function.
 
 The missing bridge is convergence. A finite list of increasingly accurate-looking zeros is evidence, not a proof that every zeta zero is reached in the limit.
 
@@ -12,13 +12,13 @@ The missing bridge is convergence. A finite list of increasingly accurate-lookin
 
 ### 1. What exact claim is being investigated?
 
-Let `Q_c` denote the Connes–van Suijlekom truncated Weil quadratic form at prime cutoff `c`, on the interval whose length is `L = log c`. Let `xi_c` be its normalized even lowest-eigenvalue state whenever that state exists, is isolated, and is simple. Let `F_c` be the associated entire Fourier/Mellin transform, normalized at a fixed nonzero reference value.
+Let `Q_c` denote the Connes–van Suijlekom truncated Weil quadratic form at support cutoff `c=lambda^2`, on the interval whose length is `L = log c`. Let `xi_c` be its normalized even lowest-eigenvalue state whenever that state exists, is isolated, and is simple. Let `F_c` be the associated entire Fourier/Mellin transform, normalized at a fixed nonzero reference value.
 
 The target convergence claim is:
 
 > As `c -> infinity`, `F_c` converges locally uniformly on the strip `|Im z| < 1/2` to the completed zeta function `Xi`, up to an explicitly controlled zero-free factor.
 
-A weaker acceptable version would prove that every zero of `Xi` is approximated, with multiplicity, by zeros of `F_c`, with no uncontrolled loss or creation of zeros.
+A weaker acceptable version would prove directly that every zero of `Xi` is approximated by zeros of `F_c`, with no uncontrolled loss. Multiplicity tracking is useful for a stronger theorem but is not a separate requirement for the basic RH implication.
 
 Before this is a formal theorem statement, the precise normalization and the exact operator/formula must be transcribed from the primary source and locked in the repository. No numerical implementation may silently substitute a different discretization for `Q_c`.
 
@@ -34,7 +34,7 @@ This implication is conditional on all of the following:
 2. the transforms are normalized without introducing singularities;
 3. convergence is locally uniform on complex neighborhoods, not merely pointwise on the real axis;
 4. the limit is actually `Xi` up to a zero-free factor;
-5. every relevant zero and its multiplicity are controlled.
+5. every possible off-real zero lies in the domain where the convergence theorem applies.
 
 ### 3. What would be genuinely new?
 
@@ -54,7 +54,7 @@ That estimate alone would not prove RH. A second theorem would still be needed t
 
 ### 4. What is the first unproved step?
 
-The sharp first unproved step is **quantitative comparison of the true continuum ground state with the published prolate proxy `k_lambda`**.
+The first zeta-specific comparison target is **quantitative comparison of the true continuum ground state with the published prolate proxy `k_lambda`**. A second independent open hypothesis is simplicity and evenness of the continuum ground state along an unbounded cutoff sequence.
 
 The eigenfunctions live on intervals of length `log c`. Unit `L^2` norm and compact support at each fixed cutoff do not provide a cutoff-independent bound. The elementary Cauchy–Schwarz estimate has the bad form
 
@@ -94,7 +94,7 @@ The present convergence strategy is falsified in its stated form if any of the f
 - the ground state repeatedly loses simplicity/isolation;
 - the spectral gap collapses in a way that makes the selected state unstable.
 
-A failed test would not disprove RH. It would disprove this proposed convergence mechanism or show that a stronger renormalization is required.
+A failed finite test would not disprove RH or an asymptotic rate; it would reject a declared finite error model or expose instability. Rigorously rejecting the asymptotic mechanism requires an analytic obstruction or a certified unbounded subsequence.
 
 ## Dependency map
 
