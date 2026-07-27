@@ -22,6 +22,25 @@ The intended outcome is one of:
 This is intentionally ambitious. No current file in this repository proves or
 disproves RH.
 
+## New here? Start with the plain-language guide
+
+Read [`docs/PLAIN_LANGUAGE_GUIDE.md`](docs/PLAIN_LANGUAGE_GUIDE.md) for a
+non-technical explanation of:
+
+- what the original Gaussian computation tested;
+- why finite positive results do not prove RH;
+- what Routes 002 and 003 ruled out;
+- what the project genuinely accomplished;
+- the exact bounded task that should happen next;
+- separate guidance for future human and AI collaborators.
+
+The short version is:
+
+> The project has not proved or disproved RH. It has rigorously identified why
+> two plausible bridges do not solve the problem. Before more computation, the
+> repository must freeze one precise version of Weil's criterion and prove that
+> its Gaussian tests satisfy every admissibility condition.
+
 ## Required questions for every proposed approach
 
 Before doing substantial work, answer:
@@ -49,9 +68,19 @@ That work is preserved as an **explored route**, not as the mission of the
 repository and not as a claimed advance toward RH. See
 [RESEARCH_MAP.md](RESEARCH_MAP.md).
 
+Later audits established two additional lessons:
+
+- **Route 002:** positive mixtures of the fixed-width Gaussian family cannot
+  cover the required range of test shapes by a simple density argument;
+- **Route 003:** replacing the universal class by an explicit countable
+  determining family is already known and leaves the full infinite difficulty
+  intact.
+
 ## Start here
 
-- Humans: read [RESEARCH_MAP.md](RESEARCH_MAP.md) and
+- General readers: read
+  [`docs/PLAIN_LANGUAGE_GUIDE.md`](docs/PLAIN_LANGUAGE_GUIDE.md).
+- Humans doing research: then read [RESEARCH_MAP.md](RESEARCH_MAP.md) and
   [NEXT_STEPS.md](NEXT_STEPS.md).
 - AI assistants: also follow [AGENTS.md](AGENTS.md).
 - Historical Gaussian materials remain under `docs/`, `src/`, `data/`, and
