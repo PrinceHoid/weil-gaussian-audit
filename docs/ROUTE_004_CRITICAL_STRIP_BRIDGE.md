@@ -4,7 +4,7 @@
 
 ## Bottom line
 
-The prolate proxy route can imply the Riemann Hypothesis, but one quantitative comparison remains unproved.
+The prolate proxy route can imply the Riemann Hypothesis, but two independent continuum hypotheses remain unproved: simple/even ground-state control and quantitative comparison with the proxy.
 
 Connes constructs a prolate proxy `k_lambda` and proves that its Fourier transform converges to Riemann's completed `Xi` uniformly on closed substrips of
 
@@ -57,7 +57,7 @@ Assume:
 || b_lambda theta_lambda - k_lambda ||_2 = O(lambda^(-1/2));
 ```
 
-3. the already-published prolate approximation theorem holds:
+3. the already-published proxy-transform convergence theorem holds:
 
 ```text
 hat(k_lambda) -> Xi
@@ -107,11 +107,11 @@ A more general sufficient condition is
 
 for every fixed `r<1/2`. The `O(lambda^(-1/2))` condition is a clean single-rate target.
 
-## Equivalent compactness formulation
+## Alternative sufficient compactness formulation
 
 For centered transforms normalized by a nonzero scalar, it is sufficient to establish cutoff-independent exponential moments for every `b<1/2`, together with pointwise identification on a real set having an accumulation point. Vitali's theorem then gives local uniform convergence in the strip and Hurwitz gives RH.
 
-Centering is mandatory. Translating `[0,log c]` to `[-log(c)/2,log(c)/2]` removes a cutoff-dependent zero-free exponential that can otherwise create apparent functional divergence without changing any zeros.
+Either center the interval or explicitly retain the resulting zero-free exponential factor. Translating `[0,log c]` to `[-log(c)/2,log(c)/2]` removes a cutoff-dependent factor that can otherwise create apparent functional divergence without changing any zeros.
 
 ## What the finite real-zero theorem does not give
 
@@ -207,13 +207,13 @@ Define the best scalar-aligned error
 E_lambda = inf_b ||b theta_lambda-k_lambda||_2.
 ```
 
-The clean bridge above is falsified if certified computations show that
+The clean bridge above is falsified only by a rigorous asymptotic obstruction, such as an analytic lower bound or a certified unbounded sequence showing that
 
 ```text
 lambda^(1/2) E_lambda
 ```
 
-grows without bound along a controlled cutoff sequence. That would not disprove RH; it would disprove this particular `L^2` transfer rate.
+grows without bound. A worsening finite trend is diagnostic evidence, not a disproof of a big-O claim. Failure of this rate would not disprove RH; it would reject this particular sufficient `L^2` transfer condition.
 
 For an exponential-moment route, measure centered normalized values on the imaginary axis for `b in {0.1,0.25,0.4,0.49}`. For nonnegative even states, one scalar value `F_lambda(i b)` controls the corresponding exponential moment up to a factor of two.
 
