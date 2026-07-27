@@ -43,7 +43,7 @@ Record:
 
 - code revision and environment;
 - all mathematical normalizations;
-- support/prime cutoff;
+- support cutoff and included prime powers;
 - basis or Galerkin dimension;
 - archimedean cutoff or a rigorous tail treatment;
 - arithmetic precision;
