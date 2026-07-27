@@ -145,6 +145,51 @@ scaled computation.
 **Detailed audit:**
 [`docs/ROUTE_003_COUNTABLE_DETERMINING_FAMILIES.md`](docs/ROUTE_003_COUNTABLE_DETERMINING_FAMILIES.md).
 
+## Route 004 — Spectral convergence of truncated Weil forms
+
+**Status:** Active; a conditional transfer lemma and an abstract obstruction are recorded, while all zeta-specific convergence hypotheses remain open.
+
+**Idea:** For support cutoff `c=lambda^2`, controlling prime powers `p^m<=c`, study the normalized transform `F_c` of the
+even lowest-eigenvalue state of the Connes–van Suijlekom truncated Weil form.
+Under the finite operator hypotheses, every zero of `F_c` lies on the real
+Fourier axis. Prove that these transforms converge locally uniformly to the
+completed zeta function `Xi`, up to a controlled zero-free factor.
+
+**Why it could reach RH:** Local uniform convergence plus the finite real-zero
+theorem would allow Hurwitz's theorem or Rouché's theorem to transfer the
+real-zero property to `Xi`. This bridge is conditional on the finite or continuum ground-state hypotheses,
+correct normalization, and unique identification of the limit.
+
+**Known versus conjectural:** Finite criticality under stated hypotheses is a
+known result. High-precision agreement of many low zeros is finite computation.
+Convergence as the cutoff tends to infinity remains open. No new theorem or RH
+claim is made here.
+
+**First unresolved step:** Compare the true continuum ground state
+`theta_lambda` with the Connes prolate proxy `k_lambda`. The proxy transform is
+already known to converge to `Xi` on closed substrips of `|Im z|<1/2`. The
+repository's critical-strip transfer lemma shows that the scalar-aligned bound
+`||b_lambda theta_lambda-k_lambda||_2 = O(lambda^(-1/2))` would transfer this
+convergence. Simplicity and evenness of the continuum lowest eigenvalue must
+also be proved along an unbounded cutoff sequence.
+
+**Early falsification:** Certify `E_lambda = inf_b ||b theta_lambda-k_lambda||_2`
+and test whether `lambda^(1/2) E_lambda` remains bounded. Also track centered
+off-axis transforms for `|Im z|<1/2`, parity, branch identity, and independent
+`N`, archimedean-cutoff, precision, and support-cutoff refinements. A rigorously established asymptotic failure of this rate rejects this
+sufficient transfer condition, not RH. A finite trend is diagnostic evidence,
+not a disproof of a big-O claim.
+
+**Rigorous cycle-one result:** A critical-strip transfer lemma and explicit
+convolution counterexample are recorded. The counterexample proves that
+positivity, a simple even ground state, a uniform gap, compact support, and
+real finite zeros do not imply convergence without zeta-specific control.
+
+**Detailed program:**
+[`docs/ROUTE_004_SPECTRAL_CONVERGENCE.md`](docs/ROUTE_004_SPECTRAL_CONVERGENCE.md)
+and
+[`docs/ROUTE_004_CRITICAL_STRIP_BRIDGE.md`](docs/ROUTE_004_CRITICAL_STRIP_BRIDGE.md).
+
 ## Proposed future routes
 
 Add a new numbered route only after completing the proposal template in
