@@ -159,8 +159,49 @@ scaled computation.
 **Detailed audit:**
 [`docs/ROUTE_003_COUNTABLE_DETERMINING_FAMILIES.md`](docs/ROUTE_003_COUNTABLE_DETERMINING_FAMILIES.md).
 
+## Route 004 — All-scale Gaussian family Q_a(t)
+
+**Status:** Proposed; blocked on the convention/admissibility memorandum.
+
+Derive `Q_a(t)` for `h_{a,t}(r) = exp(-a(r-t)^2) + exp(-a(r+t)^2)` from a
+frozen convention and target a proved scale-evolution inequality; run the
+predeclared falsification set first. Full template:
+[`docs/ROUTE_PROPOSALS_2026-07-27.md`](docs/ROUTE_PROPOSALS_2026-07-27.md).
+
+## Route 005 — de Bruijn–Newman constant upper bound
+
+**Status:** Proposed; best fit for this repository's strengths.
+
+RH ⟺ Λ = 0 (Rodgers–Tao give Λ ≥ 0; Polymath15 give Λ ≤ 0.22). Any
+reduction of the upper bound is an unconditional publishable theorem;
+newer zero-verification input (3·10^12) post-dates the published bound.
+Full template:
+[`docs/ROUTE_PROPOSALS_2026-07-27.md`](docs/ROUTE_PROPOSALS_2026-07-27.md).
+
+## Route 006 — Quantitative Nyman–Beurling / Báez-Duarte analysis
+
+**Status:** Proposed; unconditional deliverables only.
+
+Certified computation and unconditional inequalities for the Báez-Duarte
+distances `d_N`. Proving `d_N -> 0` is RH again and is not the deliverable.
+Full template:
+[`docs/ROUTE_PROPOSALS_2026-07-27.md`](docs/ROUTE_PROPOSALS_2026-07-27.md).
+
+## Route 007 — Robin/Lagarias counterexample search (disproof direction)
+
+**Status:** Proposed; low priority.
+
+Certified exact-arithmetic search over colossally abundant candidates for a
+violation of Robin's inequality; a verified violation would disprove RH.
+Full template:
+[`docs/ROUTE_PROPOSALS_2026-07-27.md`](docs/ROUTE_PROPOSALS_2026-07-27.md).
+
 ## Proposed future routes
 
 Add a new numbered route only after completing the proposal template in
 `NEXT_STEPS.md`. Do not erase rejected routes; preserving them prevents
-repetition.
+repetition. Avenues surveyed and deliberately not proposed (spectral /
+Hilbert–Pólya, F_1 / arithmetic site, de Branges, random-matrix statistics,
+percentage-of-zeros improvements, further brute-force zero verification)
+are recorded with reasons in
+[`docs/ROUTE_PROPOSALS_2026-07-27.md`](docs/ROUTE_PROPOSALS_2026-07-27.md).
