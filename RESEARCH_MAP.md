@@ -89,6 +89,16 @@ centered Gaussians with `0 < a <= 1`, but not narrower ones. Signed combinations
 and translation derivatives can enlarge the approximation span, but restricted
 positivity does not control their negative coefficients.
 
+**Candidate strengthening from Route 003 audit:** for every real `c`,
+
+```text
+Lambda_c(f) = integral_R f(r) dr - sqrt(pi) f(c)
+```
+
+is nonnegative on the generated cone. Thus every cone member satisfies
+`sup f <= integral(f)/sqrt(pi)`. This excludes excessive concentration at any
+location, not only narrow centered Gaussians. Human review remains required.
+
 **First unresolved step:** Freeze the exact map between the repository's
 additive Fourier convention and a precise multiplicative convolution-square
 version of Weil's criterion, including both required moment conditions. Only
@@ -100,6 +110,40 @@ failure of proposed scale monotonicity.
 
 **Detailed audit:**
 [`docs/ROUTE_002_GAUSSIAN_CONE_OBSTRUCTION.md`](docs/ROUTE_002_GAUSSIAN_CONE_OBSTRUCTION.md).
+
+## Route 003 — Countable determining families for Weil positivity
+
+**Status:** Rejected; already known and does not weaken RH.
+
+**Idea:** Replace Weil positivity on the full admissible class by positivity on
+an explicitly enumerable countable determining family with computable
+approximation bounds.
+
+**Why it fails as a research route:** On a separable test space where the Weil
+quadratic form is continuous, positivity on a dense countable family implies
+positivity everywhere by continuity. This structural observation is elementary.
+More importantly, Li's criterion already gives an explicit countable sequence
+equivalent to RH, Bombieri–Lagarias connect it to Weil positivity, and Bombieri
+studies the infinite quadratic form and finite truncations.
+
+**Central obstacle:** Proving positivity on every member of the determining
+family is RH again. Countability and computability merely re-index the infinite
+burden.
+
+**Finite barrier:** Brown's 2005 analysis connects finitely many Li inequalities
+to finite zero-free information. A finite verification is not RH without a new
+propagation theorem.
+
+**Required repository lesson:** Do not propose another countable, dense, or
+computable equivalence unless it contains a genuinely new mechanism that proves
+an infinite tail from strictly weaker information.
+
+**Bounded next task:** Close the additive-Schwartz versus
+multiplicative-compact-support admissibility question for Route 001 before any
+scaled computation.
+
+**Detailed audit:**
+[`docs/ROUTE_003_COUNTABLE_DETERMINING_FAMILIES.md`](docs/ROUTE_003_COUNTABLE_DETERMINING_FAMILIES.md).
 
 ## Proposed future routes
 
