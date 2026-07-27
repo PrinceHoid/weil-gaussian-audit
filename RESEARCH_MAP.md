@@ -32,7 +32,14 @@ and attempt to certify positivity as t varies.
 - a displayed prime-side functional Q(t);
 - a numerical sweep and 11,720 certificate rows;
 - exact structural coverage of the finite interval [11, 1737];
-- a handoff memorandum documenting unresolved numerical obligations.
+- a handoff memorandum documenting unresolved numerical obligations;
+- (27 July 2026) a proved tail theorem `Q(t) > 0 for t >= 2000` with an
+  executable interval certificate, plus a sweep extension covering
+  [1737, 2000], upgrading the candidate lemma to `Q(t) >= 0 for all t >= 11`.
+  See [`docs/ROUTE_001_TAIL_THEOREM.md`](docs/ROUTE_001_TAIL_THEOREM.md).
+  The tail proof also discharges the sweep's prime-tail formula (Lemma T2);
+  the remaining handoff section 6 obligations still apply to the finite
+  segments, and human review is required.
 
 **What it establishes today:**
 

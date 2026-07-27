@@ -12,7 +12,7 @@ from fractions import Fraction
 from pathlib import Path
 
 
-def main(path: str) -> int:
+def main(path: str, lo: str = "11", hi: str = "1737") -> int:
     p = Path(path)
     intervals: list[tuple[Fraction, Fraction]] = []
     widths: Counter[Fraction] = Counter()
@@ -39,7 +39,7 @@ def main(path: str) -> int:
                 min_margin = (margin, row["t_lo"], row["t_hi"])
 
     intervals.sort()
-    target_lo, target_hi = Fraction(11), Fraction(1737)
+    target_lo, target_hi = Fraction(lo), Fraction(hi)
     cur = target_lo
     for a, b in intervals:
         if a > cur:
@@ -61,7 +61,7 @@ def main(path: str) -> int:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print(f"usage: {sys.argv[0]} certificates.csv", file=sys.stderr)
+    if len(sys.argv) not in (2, 4):
+        print(f"usage: {sys.argv[0]} certificates.csv [target_lo target_hi]", file=sys.stderr)
         raise SystemExit(2)
-    raise SystemExit(main(sys.argv[1]))
+    raise SystemExit(main(*sys.argv[1:]))
