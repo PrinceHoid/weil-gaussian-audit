@@ -1,6 +1,6 @@
 # Route 004 audit — spectral convergence of truncated Weil forms
 
-**Status:** Active research program; no proof of RH and no new theorem yet.
+**Status:** Active research program; a rigorous critical-strip transfer lemma and abstract obstruction have been recorded, but there is no proof of RH.
 
 ## Plain-language idea
 
@@ -16,7 +16,7 @@ Let `Q_c` denote the Connes–van Suijlekom truncated Weil quadratic form at pri
 
 The target convergence claim is:
 
-> As `c -> infinity`, `F_c` converges locally uniformly on the complex plane to the completed zeta function `Xi`, up to an explicitly controlled zero-free factor.
+> As `c -> infinity`, `F_c` converges locally uniformly on the strip `|Im z| < 1/2` to the completed zeta function `Xi`, up to an explicitly controlled zero-free factor.
 
 A weaker acceptable version would prove that every zero of `Xi` is approximated, with multiplicity, by zeros of `F_c`, with no uncontrolled loss or creation of zeros.
 
@@ -43,7 +43,7 @@ The published numerical agreement is finite computation. The proposed new interm
 A useful first theorem would be a cutoff-independent exponential-moment estimate such as
 
 ```text
-For every A > 0,
+For every 0 < A < 1/2,
 
   sup_c  integral exp(A |u|) |xi_c(u)| du / |integral xi_c(u) du| < infinity,
 ```
@@ -54,7 +54,7 @@ That estimate alone would not prove RH. A second theorem would still be needed t
 
 ### 4. What is the first unproved step?
 
-The first unproved step is **uniform compactness as the interval grows**.
+The sharp first unproved step is **quantitative comparison of the true continuum ground state with the published prolate proxy `k_lambda`**.
 
 The eigenfunctions live on intervals of length `log c`. Unit `L^2` norm and compact support at each fixed cutoff do not provide a cutoff-independent bound. The elementary Cauchy–Schwarz estimate has the bad form
 
@@ -71,7 +71,7 @@ The route needs either:
 - a different renormalization and topology strong enough to preserve zeros; or
 - a structural resolvent/operator convergence theorem that supplies compactness indirectly.
 
-After compactness, the next unproved step is uniqueness: derive an equation or variational characterization that forces every subsequential limit to be the completed zeta function rather than another real-entire function.
+Connes already proves that the Fourier transforms of `k_lambda` converge to `Xi` on closed substrips of `|Im z|<1/2`. A repository-level transfer lemma shows that the scalar-aligned estimate `||b_lambda theta_lambda-k_lambda||_2 = O(lambda^(-1/2))` would transfer that convergence to the true ground states. The other prerequisite is simplicity and evenness of the continuum lowest eigenvalue for an unbounded cutoff sequence.
 
 ### 5. What is the earliest falsification test?
 
@@ -126,21 +126,28 @@ RH
 - **Finite computation:** reported truncated matrices reproduce many low zeta zeros to high precision for selected cutoffs and discretizations.
 - **Heuristic:** increasing the prime cutoff appears to make the finite zeros converge to zeta zeros.
 - **Open problem:** convergence to every zeta zero has not been proved.
-- **New claim made here:** none. This document isolates a candidate intermediate theorem and a falsification protocol.
+- **Repository-level result:** a standard-analysis transfer lemma reduces the bridge to `||b_lambda theta_lambda-k_lambda||_2 = O(lambda^(-1/2))` on the critical strip, and an explicit convolution example proves that finite real-rootedness, positivity, and a uniform gap do not supply compactness abstractly. These claims require independent review and do not prove RH.
 
 ## Immediate work queue
 
-1. Transcribe the exact quadratic form, domain, interval convention, transform, and normalization from the primary papers.
-2. Prove or delimit the ground-state existence, simplicity, isolation, and gap assumptions as `c` varies.
-3. Derive an identity or inequality capable of controlling endpoint mass.
-4. Reproduce the numerical experiment while recording off-axis bounds, localization, normalization, and gap data—not only zero locations.
-5. Attempt the exponential-moment theorem; if it fails, construct the failure mechanism explicitly.
-6. Only after compactness is established, attack unique identification of the limit with `Xi`.
+1. Freeze the continuum, Galerkin, and Suzuki families separately; never interchange their hypotheses or limits.
+2. Prove simplicity and evenness of the continuum lowest eigenvalue along an unbounded cutoff sequence.
+3. Implement `k_lambda` with a verified high-precision prolate routine and cutoff-free/interval-certified Weil matrices.
+4. Measure and then prove the scalar-aligned error `E_lambda = inf_b ||b theta_lambda-k_lambda||_2`.
+5. Attack the sufficient rate `E_lambda = O(lambda^(-1/2))` using the semilocal trace formula without assuming global Weil positivity.
+6. Continue off-axis falsification tests on `|Im z|<1/2`, independently refining `N`, archimedean cutoff, precision, and the prime/support cutoff.
+
+## First research-cycle result
+
+See [`ROUTE_004_CRITICAL_STRIP_BRIDGE.md`](ROUTE_004_CRITICAL_STRIP_BRIDGE.md) for the proof of the transfer lemma, source corrections, counterexamples, exploratory off-axis data, and the next falsification protocol.
 
 ## Sources
 
 - Alain Connes, *The Riemann Hypothesis: Past, Present and a Letter Through Time*, arXiv:2602.04022.
 - Alain Connes and Walter D. van Suijlekom, *Quadratic Forms, Real Zeros and Echoes of the Spectral Action*, arXiv:2511.23257.
+- Alain Connes, Caterina Consani, and Henri Moscovici, localized Weil/spectral construction, arXiv:2511.22755.
+- Masatoshi Suzuki, *Weil's quadratic form via the screw function*, arXiv:2606.09096.
 - Akiva Groskin, *High-Precision Approximation of Riemann Zeros via the Truncated Weil Form*, arXiv:2605.20224.
+- Akiva Groskin, *A finite Guinand-Weil dictionary and archimedean tail order for the truncated Weil quadratic form*, arXiv:2607.02828.
 
 The sources explicitly distinguish the proved finite real-zero statement and numerical approximation from the unproved cutoff-to-infinity convergence needed for RH.
