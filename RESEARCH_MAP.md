@@ -178,8 +178,11 @@ Cycle one derived the exact scaled functional and proved that
 `G(a,t)=sqrt(a)Q_a(t)`, with `tau=1/(4a)`, obeys the heat equation.
 Increasing `a` is backward heat flow, so positivity at `a=1` does not
 propagate to narrower Gaussians. The eight-point conditional diagnostic found
-no negative forecast and rejected naive pointwise scale monotonicity. Do not
-run a larger grid without a genuinely new backward-heat invariant. See
+no negative forecast and rejected naive pointwise scale monotonicity. These
+are valid additive explicit-formula tests, so an exact negative value would
+contradict RH; however, their pole moments are generally nonzero, so they are
+not automatically a bridge to the pole-neutral convolution-square Weil class.
+Do not run a larger grid without a genuinely new backward-heat invariant. See
 [`docs/ROUTE_005_ALL_SCALE_FALSIFICATION.md`](docs/ROUTE_005_ALL_SCALE_FALSIFICATION.md).
 
 ## Route 006 — de Bruijn–Newman constant upper bound
