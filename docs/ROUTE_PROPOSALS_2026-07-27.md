@@ -29,10 +29,12 @@ protocol in `NEXT_STEPS.md`.
    scale law propagates known positivity from `a=1` to `a>1`. The exact
    result is
    `4a^2 partial_a Q_a + partial_t^2 Q_a + 2a Q_a = 0`.
-2. **Connection to RH.** A rigorously certified negative `Q_a(t)` for this
-   admissible family would disprove RH. Failure of a proposed monotonicity
-   only rejects that bridge. Even positivity for every `(a,t)` would not
-   prove RH because this family is smaller than Weil's universal test class.
+2. **Connection to RH.** These are valid additive explicit-formula tests,
+   and under RH their exact zero side is a sum of nonnegative Gaussians.
+   Therefore a rigorously certified negative `Q_a(t)` would disprove RH.
+   Failure of a proposed monotonicity only rejects that bridge. Even
+   positivity for every `(a,t)` would not prove RH because this family is
+   smaller than Weil's universal test class.
 3. **Closest prior art.** Bombieri's Clay exposition for Weil's criterion;
    Route 001 for the `a=1` normalization; heat-flow positivity methods in
    the de Bruijn–Newman literature; and Connes–Consani for semilocal Weil
@@ -48,7 +50,10 @@ protocol in `NEXT_STEPS.md`.
    signs.
 6. **Assumptions and evidence.** The Fourier transform, scaled explicit
    formula, PDE, and heat-flow direction are exact derivations under the
-   repository convention and await independent expert review. The eight
+   repository convention and were independently reconstructed by a second AI;
+   expert review is still required. The Gaussian's pole moments are generally
+   nonzero, so a separate subtraction or admissibility bridge is required for
+   the pole-neutral convolution-square version of Weil positivity. The eight
    numerical values conditionally insert three critical-line zero ordinates;
    they are finite evidence only.
 7. **Status.** Explored. Do not run a larger grid without a new backward-heat
