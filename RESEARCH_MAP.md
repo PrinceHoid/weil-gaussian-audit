@@ -33,13 +33,14 @@ and attempt to certify positivity as t varies.
 - a numerical sweep and 11,720 certificate rows;
 - exact structural coverage of the finite interval [11, 1737];
 - a handoff memorandum documenting unresolved numerical obligations;
-- (27 July 2026) a proved tail theorem `Q(t) > 0 for t >= 2000` with an
-  executable interval certificate, plus a sweep extension covering
-  [1737, 2000], upgrading the candidate lemma to `Q(t) >= 0 for all t >= 11`.
-  See [`docs/ROUTE_001_TAIL_THEOREM.md`](docs/ROUTE_001_TAIL_THEOREM.md).
-  The tail proof also discharges the sweep's prime-tail formula (Lemma T2);
-  the remaining handoff section 6 obligations still apply to the finite
-  segments, and human review is required.
+- (27 July 2026) PR #7 added a promising candidate analytic tail argument
+  for `t >= 2000` and a proposed extension sweep on `[1737, 2000]`.
+  Independent audit found interval-endpoint narrowing in the tail script and
+  an underestimated decreasing-series remainder in the extension. Therefore
+  the claimed upgrade to all `t >= 11` is not certified.
+- Per the current repository directive, do not extend the fixed-scale Route
+  001 sweep beyond `t=1737`. Preserve the candidate tail argument for
+  correction and review, but do not treat it as an RH bridge.
 
 **What it establishes today:**
 
@@ -159,26 +160,39 @@ scaled computation.
 **Detailed audit:**
 [`docs/ROUTE_003_COUNTABLE_DETERMINING_FAMILIES.md`](docs/ROUTE_003_COUNTABLE_DETERMINING_FAMILIES.md).
 
-## Route 004 — All-scale Gaussian family Q_a(t)
+## Route 004 — Spectral convergence
 
-**Status:** Proposed; blocked on the convention/admissibility memorandum.
+**Status:** Active in [PR #6](https://github.com/PrinceHoid/weil-gaussian-audit/pull/6);
+candidate transfer results pending independent mathematical review.
 
-Derive `Q_a(t)` for `h_{a,t}(r) = exp(-a(r-t)^2) + exp(-a(r+t)^2)` from a
-frozen convention and target a proved scale-evolution inequality; run the
-predeclared falsification set first. Full template:
-[`docs/ROUTE_PROPOSALS_2026-07-27.md`](docs/ROUTE_PROPOSALS_2026-07-27.md).
+This identifier is reserved permanently for the localized-Weil ground-state
+and prolate-proxy convergence program. PR #7 did not audit Route 004 and must
+not overwrite its numbering.
 
-## Route 005 — de Bruijn–Newman constant upper bound
+## Route 005 — All-scale Gaussian family Q_a(t)
+
+**Status:** Explored; the naive heat-propagation bridge is blocked and no RH
+counterexample was found.
+
+Cycle one derived the exact scaled functional and proved that
+`G(a,t)=sqrt(a)Q_a(t)`, with `tau=1/(4a)`, obeys the heat equation.
+Increasing `a` is backward heat flow, so positivity at `a=1` does not
+propagate to narrower Gaussians. The eight-point conditional diagnostic found
+no negative forecast and rejected naive pointwise scale monotonicity. Do not
+run a larger grid without a genuinely new backward-heat invariant. See
+[`docs/ROUTE_005_ALL_SCALE_FALSIFICATION.md`](docs/ROUTE_005_ALL_SCALE_FALSIFICATION.md).
+
+## Route 006 — de Bruijn–Newman constant upper bound
 
 **Status:** Proposed; best fit for this repository's strengths.
 
-RH ⟺ Λ = 0 (Rodgers–Tao give Λ ≥ 0; Polymath15 give Λ ≤ 0.22). Any
-reduction of the upper bound is an unconditional publishable theorem;
-newer zero-verification input (3·10^12) post-dates the published bound.
+RH ⟺ Λ = 0 (Rodgers–Tao give Λ ≥ 0). The published unconditional upper
+bound is Λ ≤ 0.20 by Platt–Trudgian, building on Polymath15. Any verified
+strict reduction would be an unconditional quantitative theorem.
 Full template:
 [`docs/ROUTE_PROPOSALS_2026-07-27.md`](docs/ROUTE_PROPOSALS_2026-07-27.md).
 
-## Route 006 — Quantitative Nyman–Beurling / Báez-Duarte analysis
+## Route 007 — Quantitative Nyman–Beurling / Báez-Duarte analysis
 
 **Status:** Proposed; unconditional deliverables only.
 
@@ -187,7 +201,7 @@ distances `d_N`. Proving `d_N -> 0` is RH again and is not the deliverable.
 Full template:
 [`docs/ROUTE_PROPOSALS_2026-07-27.md`](docs/ROUTE_PROPOSALS_2026-07-27.md).
 
-## Route 007 — Robin/Lagarias counterexample search (disproof direction)
+## Route 008 — Robin/Lagarias counterexample search (disproof direction)
 
 **Status:** Proposed; low priority.
 
@@ -200,8 +214,9 @@ Full template:
 
 Add a new numbered route only after completing the proposal template in
 `NEXT_STEPS.md`. Do not erase rejected routes; preserving them prevents
-repetition. Avenues surveyed and deliberately not proposed (spectral /
-Hilbert–Pólya, F_1 / arithmetic site, de Branges, random-matrix statistics,
+repetition. Avenues surveyed and deliberately not proposed (generic Hilbert–Pólya
+heuristics beyond active Route 004, F_1 / arithmetic site, de Branges,
+random-matrix statistics,
 percentage-of-zeros improvements, further brute-force zero verification)
 are recorded with reasons in
 [`docs/ROUTE_PROPOSALS_2026-07-27.md`](docs/ROUTE_PROPOSALS_2026-07-27.md).
