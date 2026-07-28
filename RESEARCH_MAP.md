@@ -213,6 +213,20 @@ all remaining RH content of this program lives at `a > 1`. This is not a
 step toward proving RH by itself. See
 [`docs/ROUTE_005_BROAD_SCALE_POSITIVITY.md`](docs/ROUTE_005_BROAD_SCALE_POSITIVITY.md).
 
+**Cycle-3 candidate result (28 July 2026, awaiting human review):** the
+`a = 1` barrier is crossed using zeta-specific input, exactly as cycle 1
+demanded: verified zeros power a scale-window theorem
+(`Q_a(t) > 0` for every `a >= 1` and `|t| <= 3e12 - 100`), a generalized
+prime-side tail theorem certifies the far tail at `a = 2` (margin 5.43)
+and `a = 3` (margin 1.24), and benign-direction heat propagation from
+`a = 3` yields `Q_a(t) > 0` for every `0 < a <= 3` and every real `t`,
+unconditionally. The method has a structural ceiling at
+`a_max(3e12) ~ 3.3` (and `a_max ~ 4 log log H` in the verified height H),
+which now localizes the program's entire remaining difficulty in one
+quantitative question: bounding the prime sum with its oscillation
+retained. Certificate: `tools/narrow_scale_certificate.py`. See
+[`docs/ROUTE_005_NARROW_SCALE_THEOREMS.md`](docs/ROUTE_005_NARROW_SCALE_THEOREMS.md).
+
 ## Route 006 — de Bruijn–Newman constant upper bound
 
 **Status:** Proposed; best fit for this repository's strengths.
