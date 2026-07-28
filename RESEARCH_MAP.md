@@ -228,17 +228,27 @@ bounding the prime sum with its oscillation retained. Certificate:
 `tools/narrow_scale_certificate.py`. See
 [`docs/ROUTE_005_NARROW_SCALE_THEOREMS.md`](docs/ROUTE_005_NARROW_SCALE_THEOREMS.md).
 
-**Scale–strip duality (28 July 2026, candidate):** an effective detection
-theorem prices the wall from the other side: full-line positivity at
-scale `a` (with on-line knowledge in an O(1) window) confines any
-off-line zero at height `T` to `|beta - 1/2| <~ sqrt((log log T)/a)`,
-non-vacuous exactly when `a > ~4 log log T`. The family converts between
-scale and double-exponential height at par, so any unconditional
-positivity proof beyond the ceiling would immediately yield new
-zero-confinement beyond all current verification. The full determining
-property (`all a, t` positivity implies RH) remains open due to a
-clustering case, documented honestly. See
-[`docs/ROUTE_005_SCALE_STRIP_DUALITY.md`](docs/ROUTE_005_SCALE_STRIP_DUALITY.md).
+**Scale–strip duality (28 July 2026, revised after cycle-4 audit):** the
+original effective single-scale detection estimate is not proved as written.
+Its proof fails to extract the complete zero quartet, misses a conjugate term
+in the distance bound, freezes a growing logarithmic zero count across an
+infinite tail, and suppresses the dependence on
+`Delta = 2 + pi/(2 a y)`. The proposed
+`|beta - 1/2| <~ sqrt((log log T)/a)` exchange rate remains a motivated
+repair target, not a certified theorem. The full determining property was
+initially left open due to a clustering case. Cycle 4 now
+resolves that case at the candidate-proof level: positivity at every
+translation along any unbounded set of scales is equivalent to RH. One proof
+uses Gaussian mollification in Weil's positive-distribution criterion; an
+independent direct proof selects a generic translation where one off-line
+zero profile is uniquely exponentially dominant, then chooses an unbounded
+scale sequence on which its phase is negative. The same cycle proves that the
+absolute prime-sum bound is the exact global supremum, so no
+height-independent cancellation saving can cross the wall; the remaining
+analytic target must couple phase alignment to the growth of `t`. See
+[`docs/ROUTE_005_SCALE_STRIP_DUALITY.md`](docs/ROUTE_005_SCALE_STRIP_DUALITY.md)
+and
+[`docs/ROUTE_005_DETERMINING_THEOREM.md`](docs/ROUTE_005_DETERMINING_THEOREM.md).
 
 ## Route 006 — de Bruijn–Newman constant upper bound
 
