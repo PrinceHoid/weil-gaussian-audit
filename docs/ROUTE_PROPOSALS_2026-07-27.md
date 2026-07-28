@@ -2,10 +2,7 @@
 
 **Purpose.** The repository asked collaborators either to audit existing
 routes or to propose new ones through the seven-question template in
-`NEXT_STEPS.md`. Routes 001–003 are audited, and Route 004 is assigned to the active spectral-
-convergence program in PR #6. This document proposes four new routes (005–008) and records the avenues that were surveyed and
-deliberately *not* proposed, so later collaborators do not repeat the
-survey.
+`NEXT_STEPS.md`. Routes 001–003 are audited, and Route 004 is assigned to the active spectral-convergence program in PR #6. This document records Route 005's completed first falsification cycle, proposes Routes 006–008, and records the avenues that were surveyed and deliberately *not* proposed, so later collaborators do not repeat the survey.
 
 **Selection principle.** Per the Route 003 lesson, no route below is "yet
 another countable/dense/computable equivalence of RH." Each proposed route
@@ -26,34 +23,37 @@ protocol in `NEXT_STEPS.md`.
 
 ## Route 005 — All-scale Gaussian family Q_a(t) (continuation of 001/002)
 
-1. **Claim.** Derive, from one frozen explicit-formula convention, the
-   prime-side functional `Q_a(t)` for
-   `h_{a,t}(r) = exp(-a(r-t)^2) + exp(-a(r+t)^2)`, `a > 0`, and prove a
-   rigorously stated scale-evolution inequality (a differential or
-   monotonicity relation in `a` with explicit remainder signs).
-2. **Connection to RH.** The Route 002 obstruction proves fixed-scale
-   positive mixing cannot reach narrower Gaussians; varying `a` is the
-   minimal enlargement that contains them. A proved positivity statement
-   uniform in `(a, t)` would still not be RH (the Weil class is larger),
-   but a scale-evolution *mechanism* would be a genuinely new structural
-   tool, and its failure would kill the Gaussian program cleanly.
-3. **Prior art.** Bombieri's Clay exposition for the criterion; Route 001
-   handoff for the `a = 1` functional; Connes–Consani's work on Weil
-   positivity (trace-formula positivity in the semilocal case) is the
-   research frontier for positivity approaches and must be read before
-   claiming novelty.
-4. **Novel step.** The scale-evolution inequality itself. Nothing in
-   Routes 001–003 supplies any inequality linking different `a`.
-5. **Failure test.** Before any large computation: derive `Q_a(t)`
-   symbolically, then rigorously evaluate the predeclared set
-   `a in {2, 4}`, `t in {0, 11, 14.1347, 17.58}` (per
-   `NEXT_STEPS.md`). A negative value, or failure of the proposed
-   monotonicity, ends the route (that outcome is progress).
-6. **Dependencies.** The admissibility/convention memorandum
-   (`NEXT_STEPS.md` step 1) is a hard prerequisite; informal rescaling of
-   the `a = 1` formula is forbidden because prime weights, Fourier
-   factors, pole and archimedean terms all change with `a`.
-7. **Status.** Proposed. Blocked on the convention memorandum.
+1. **Exact target and result.** Starting from the frozen Route 001 Fourier
+   convention, derive the exact prime-side functional for
+   `h_{a,t}(r) = exp(-a(r-t)^2) + exp(-a(r+t)^2)` and test whether a
+   scale law propagates known positivity from `a=1` to `a>1`. The exact
+   result is
+   `4a^2 partial_a Q_a + partial_t^2 Q_a + 2a Q_a = 0`.
+2. **Connection to RH.** A rigorously certified negative `Q_a(t)` for this
+   admissible family would disprove RH. Failure of a proposed monotonicity
+   only rejects that bridge. Even positivity for every `(a,t)` would not
+   prove RH because this family is smaller than Weil's universal test class.
+3. **Closest prior art.** Bombieri's Clay exposition for Weil's criterion;
+   Route 001 for the `a=1` normalization; heat-flow positivity methods in
+   the de Bruijn–Newman literature; and Connes–Consani for semilocal Weil
+   positivity. The elementary heat identity is not claimed as literature
+   novelty.
+4. **First unproved step now.** Find a genuinely zeta-specific invariant or
+   inequality that controls the required backward heat flow. Ordinary heat
+   positivity supplies control only in the opposite direction.
+5. **Early falsification result.** The preregistered
+   `a in {2,4}`, `t in {0,11,14.1347,17.58}` conditional zero-side probe
+   found no negative forecast and rejected naive pointwise monotonicity at
+   six of eight points. These are diagnostics, not certified prime-side
+   signs.
+6. **Assumptions and evidence.** The Fourier transform, scaled explicit
+   formula, PDE, and heat-flow direction are exact derivations under the
+   repository convention and await independent expert review. The eight
+   numerical values conditionally insert three critical-line zero ordinates;
+   they are finite evidence only.
+7. **Status.** Explored. Do not run a larger grid without a new backward-heat
+   invariant. Full record:
+   [`ROUTE_005_ALL_SCALE_FALSIFICATION.md`](ROUTE_005_ALL_SCALE_FALSIFICATION.md).
 
 ## Route 006 — de Bruijn–Newman constant: shrink the interval around Λ = 0
 
@@ -165,16 +165,15 @@ protocol in `NEXT_STEPS.md`.
 
 ## What "exhausting reasonable effort" means for this repository
 
-1. **Finish Route 001 to publication quality** (admissibility memorandum;
-   Arb port; independent verifier; then a short rigorous computational
-   note). A finished negative-or-partial result in the literature outlives
-   any unfinished attack.
-2. **Run Route 005's falsification experiment** as soon as the convention
-   memorandum exists — it is the cheapest way to learn whether the
-   Gaussian program has any future.
-3. **Invest sustained effort only in Route 006**, the one venue where
-   unconditional quantitative progress is structurally guaranteed to be
-   meaningful.
+1. **Halt fixed-scale Route 001 at `t=1737`.** Preserve its candidate
+   analytic tail for correction and possible publication, but do not extend
+   the finite sweep; Route 002 already blocks the proposed universal bridge.
+2. **Treat Route 005 cycle one as complete.** The exact heat direction and
+   failed monotonicity test rule out a larger grid unless a new backward-heat
+   invariant is first proved.
+3. **Audit, then invest sustained effort in Route 006**, the proposed venue
+   where a strict bound improvement would be an unconditional quantitative
+   theorem even if RH remains open.
 4. **Engage humans.** Post the hardened Route 001/002 material where
    analytic number theorists will see it; AI agreement is not
    verification (repository rule), and expert contact is itself a
