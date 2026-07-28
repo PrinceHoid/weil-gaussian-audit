@@ -201,6 +201,18 @@ invariant in the de Bruijn–Newman literature, where Rodgers–Tao's Λ ≥ 0
 already implies no generic (zeta-independent) invariant can exist. See
 [`docs/INDEPENDENT_AUDIT_2026-07-28.md`](docs/INDEPENDENT_AUDIT_2026-07-28.md).
 
+**Cycle-2 candidate result (28 July 2026, awaiting human review):**
+assembling Platt–Trudgian zero verification, an explicit zero-counting
+bound, the Route 001 tail theorem, and the cycle-1 heat identity in its
+benign (broadening) direction yields the candidate theorem
+`Q_a(t) > 0 for every 0 < a <= 1 and every real t` — unconditional
+full-line positivity on the entire broad half of the scale range,
+including the previously untouchable region `|t| < 11`. Together with
+Route 002 this settles exactly the region reachable by positive mixing;
+all remaining RH content of this program lives at `a > 1`. This is not a
+step toward proving RH by itself. See
+[`docs/ROUTE_005_BROAD_SCALE_POSITIVITY.md`](docs/ROUTE_005_BROAD_SCALE_POSITIVITY.md).
+
 ## Route 006 — de Bruijn–Newman constant upper bound
 
 **Status:** Proposed; best fit for this repository's strengths.
