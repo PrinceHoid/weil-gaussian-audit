@@ -56,8 +56,44 @@ Omega(r)
 Setting `a=1` recovers Route 001 exactly.
 
 This derivation is exact algebra under the selected explicit-formula
-normalization. The repository still requires an independent
-analytic-number-theory audit of admissibility, convergence, and signs.
+normalization. An independent reconstruction confirmed every displayed factor
+and sign.
+
+## Admissibility boundary
+
+The Gaussian is a valid additive Guinand–Weil explicit-formula test: it is
+entire, even, real and nonnegative on the real axis, and rapidly decaying in
+horizontal strips. Its multiplicative representative is
+
+```text
+f_(a,t)(x)
+  = x^(-1/2) / sqrt(pi a)
+    exp(-(log x)^2/(4a)) cos(t log x).
+```
+
+However, its two pole values are generally nonzero:
+
+```text
+f_hat(0) = f_hat(1) = h_(a,t)(i/2)
+         = 2 exp(a/4-a t^2) cos(a t).
+```
+
+It is therefore not automatically in the pole-neutral convolution-square
+class used in one formulation of Weil positivity. A pole subtraction or an
+exact admissibility bridge is required before using this family to approximate
+that universal class.
+
+The direct falsification implication is unaffected: under RH the exact zero
+side is
+
+```text
+2 sum_(gamma>0)
+  [exp(-a(gamma-t)^2) + exp(-a(gamma+t)^2)] >= 0.
+```
+
+Thus a rigorously enclosed negative value of the full explicit-formula
+functional would contradict RH. Failure of a scale monotonicity law would only
+reject that proposed bridge.
 
 ## Exact scale identity
 
