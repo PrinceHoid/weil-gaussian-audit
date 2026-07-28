@@ -2,8 +2,8 @@
 
 **Purpose.** The repository asked collaborators either to audit existing
 routes or to propose new ones through the seven-question template in
-`NEXT_STEPS.md`. Routes 001–003 are audited. This document proposes four
-new routes (004–007) and records the avenues that were surveyed and
+`NEXT_STEPS.md`. Routes 001–003 are audited, and Route 004 is assigned to the active spectral-
+convergence program in PR #6. This document proposes four new routes (005–008) and records the avenues that were surveyed and
 deliberately *not* proposed, so later collaborators do not repeat the
 survey.
 
@@ -24,7 +24,7 @@ protocol in `NEXT_STEPS.md`.
 
 ---
 
-## Route 004 — All-scale Gaussian family Q_a(t) (continuation of 001/002)
+## Route 005 — All-scale Gaussian family Q_a(t) (continuation of 001/002)
 
 1. **Claim.** Derive, from one frozen explicit-formula convention, the
    prime-side functional `Q_a(t)` for
@@ -55,27 +55,26 @@ protocol in `NEXT_STEPS.md`.
    factors, pole and archimedean terms all change with `a`.
 7. **Status.** Proposed. Blocked on the convention memorandum.
 
-## Route 005 — de Bruijn–Newman constant: shrink the interval around Λ = 0
+## Route 006 — de Bruijn–Newman constant: shrink the interval around Λ = 0
 
 1. **Claim.** Improve the unconditional upper bound on the de
-   Bruijn–Newman constant Λ (currently Λ ≤ 0.22 by Polymath15, with ≤ 0.2
-   available conditionally on extended zero verification), or make any
+   Bruijn–Newman constant Λ (currently Λ ≤ 0.20 unconditionally by Platt–Trudgian, building on
+   Polymath15), or make any
    rigorous quantitative improvement to the heat-flow/barrier machinery.
 2. **Connection to RH.** RH is equivalent to Λ ≤ 0; Rodgers–Tao proved
    Λ ≥ 0 unconditionally, so RH ⟺ Λ = 0. Every reduction of the upper
    bound is an unconditional theorem strictly between "nothing" and RH —
-   the only known attack venue where partial progress is guaranteed to be
-   publishable and quantifiable.
+   a clear scalar benchmark where every verified strict improvement is an
+   unconditional quantitative theorem.
 3. **Prior art.** de Bruijn 1950 (Λ ≤ 1/2); Ki–Kim–Lee 2009 (Λ < 1/2);
    Rodgers–Tao 2018 (Λ ≥ 0); Polymath15 2019 (Λ ≤ 0.22; effective
    heat-flow approximations, barrier computations, published methodology
-   and open-source code in the `dbn_upper_bound` repository).
-4. **Novel step.** Either (i) push the Polymath15 barrier computation
-   further using modern rigorous numerics (Arb) and the post-2020 zero
-   verification height 3·10^12 (Platt–Trudgian), which post-dates the
-   Polymath15 computations; or (ii) a sharper effective bound in their
-   analytical lemmas. Both are bounded, checkable tasks.
-5. **Failure test.** Reproduce the published Λ ≤ 0.22 pipeline first. If
+   and open-source code); and Platt–Trudgian 2021 (the zero verification
+   that makes Λ ≤ 0.20 unconditional).
+4. **Novel step.** First independently reproduce the published Λ ≤ 0.20 result and its
+   certificate-to-theorem interfaces. Only then seek a smaller explicit
+   bound using modern rigorous numerics or sharper analytical lemmas.
+5. **Failure test.** Reproduce the published Λ ≤ 0.20 pipeline first. If
    the barrier computation cannot be reproduced or the cost model shows
    the next improvement needs infeasible compute, record that and stop.
 6. **Dependencies.** Polymath15's published papers and code; Arb/FLINT;
@@ -83,7 +82,7 @@ protocol in `NEXT_STEPS.md`.
 7. **Status.** Proposed. This is the best fit in this document for the
    repository's demonstrated strength (rigorous certified computation).
 
-## Route 006 — Quantitative Nyman–Beurling / Báez-Duarte analysis
+## Route 007 — Quantitative Nyman–Beurling / Báez-Duarte analysis
 
 1. **Claim.** Study the Báez-Duarte distances `d_N` (distance in the
    Nyman–Beurling criterion restricted to integer dilations) with the goal
@@ -109,7 +108,7 @@ protocol in `NEXT_STEPS.md`.
 7. **Status.** Proposed. Explicitly NOT another equivalence-restatement:
    the only claimed deliverables are unconditional.
 
-## Route 007 — Disproof direction: Robin/Lagarias counterexample search
+## Route 008 — Disproof direction: Robin/Lagarias counterexample search
 
 1. **Claim.** Systematically search for a counterexample to Robin's
    inequality `sigma(n) < e^gamma n log log n` (`n > 5040`), equivalent to
@@ -130,22 +129,22 @@ protocol in `NEXT_STEPS.md`.
    (extraordinary claim → breakthrough protocol) or extends a bound.
 6. **Dependencies.** Exact integer arithmetic (no floats near the
    boundary); enumeration of colossally abundant numbers.
-7. **Status.** Proposed, low priority — a weekend-scale project kept
-   honest by exact arithmetic; its realistic value is pedagogical and
-   negative-evidence.
+7. **Status.** Proposed, low priority — a bounded but nontrivial rigorous-numerics project requiring exact integer
+   arithmetic, real ball enclosures for transcendental comparisons, and a
+   complete candidate enumeration; its realistic value is negative evidence.
 
 ---
 
 ## Avenues surveyed and not proposed
 
-- **Hilbert–Pólya / spectral operators** (Berry–Keating `xp`,
-  Bender–Brody–Müller, etc.): no known route from the heuristics to a
-  self-adjointness proof; every step that matters is exactly as hard as
-  RH. Nothing bounded to compute or falsify.
-- **Connes / F_1 / arithmetic-site program:** serious mathematics by
-  specialists, decades deep; a repository like this can *read* it (and
-  must, for Route 004 prior art) but cannot contribute incrementally
-  without years of background. Not a route here.
+- **Localized Weil spectral convergence:** tracked as active Route 004 in
+  PR #6. Its precise proxy-comparison and continuum ground-state targets must
+  not be conflated with generic Hilbert–Pólya heuristics.
+- **Generic Hilbert–Pólya heuristics** (Berry–Keating `xp`,
+  Bender–Brody–Müller, etc.): no bounded operator-and-convergence target is
+  proposed here.
+- **Broader Connes / F_1 / arithmetic-site program:** relevant background for
+  Route 004, but not proposed as a second independent route.
 - **de Branges spaces:** the published counterexamples to earlier
   positivity conditions (Conrey–Li) make unguided work here likely to
   repeat known failures.
@@ -154,11 +153,11 @@ protocol in `NEXT_STEPS.md`.
 - **Zero-density / critical-line percentage improvements** (Levinson,
   Conrey ≥ 40%, later ~41.7%): real unconditional progress, but the
   techniques (mollifier optimization) are a specialist industry with an
-  enormous engineering cost per 0.1%; dominated by Route 005 for this
+  enormous engineering cost per 0.1%; dominated by Route 006 for this
   team.
 - **Extending brute-force zero verification** beyond 3·10^12
   (Platt–Trudgian): not proposed as progress toward proof (Route 003's
-  finite-to-infinite barrier), though Route 005 consumes such results as
+  finite-to-infinite barrier), though Route 006 consumes such results as
   input.
 - **Another equivalence reformulation** (countable families, discretized
   criteria, moment reformulations): rejected on the Route 003 lesson
@@ -170,17 +169,17 @@ protocol in `NEXT_STEPS.md`.
    Arb port; independent verifier; then a short rigorous computational
    note). A finished negative-or-partial result in the literature outlives
    any unfinished attack.
-2. **Run Route 004's falsification experiment** as soon as the convention
+2. **Run Route 005's falsification experiment** as soon as the convention
    memorandum exists — it is the cheapest way to learn whether the
    Gaussian program has any future.
-3. **Invest sustained effort only in Route 005**, the one venue where
+3. **Invest sustained effort only in Route 006**, the one venue where
    unconditional quantitative progress is structurally guaranteed to be
    meaningful.
 4. **Engage humans.** Post the hardened Route 001/002 material where
    analytic number theorists will see it; AI agreement is not
    verification (repository rule), and expert contact is itself a
    required step of reasonable effort.
-5. **Accept the honest endpoint.** If Routes 004–007 end in recorded
+5. **Accept the honest endpoint.** If proposed Routes 005–008 end in recorded
    obstructions, the repository has done what a rational actor can do:
    converted an unbounded ambition into a set of proved lemmas, eliminated
    bridges, and reproducible artifacts.
