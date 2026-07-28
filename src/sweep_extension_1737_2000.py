@@ -109,7 +109,10 @@ for p in primerange(2,100001):
 def T2iv(b,M=2000):
     s = iv.mpf(0)
     for n in range(M): a = iv.mpf(n)+iv.mpf('0.25'); s += a/((a*a+b*b)**2)
-    return s + iv.mpf([0, float(1/(2*(M+0.25)**2))])
+    # decreasing-series tail from n=M needs the first term plus the integral:
+    # sum_{n>=M} f(n) <= f(M) + int_M^inf f(x) dx  (2026-07-28 audit fix)
+    aM = iv.mpf(M)+iv.mpf('0.25')
+    return s + iv.mpf([0, up(float(mp.mpf((1/aM**3 + 1/(2*aM**2)).b)))])
 L2 = (2/iv.sqrt(iv.pi))*(SQc+iv.mpf('1e-6')) + iv.mpf('2.5')*T2iv(iv.mpf('3.5'))/iv.sqrt(iv.pi) \
      + iv.mpf('2.5')*T2iv(iv.mpf(0))*iv.exp(-16)/(4*iv.pi) + iv.mpf('1e-40')
 L2_hi = up(float(mp.mpf(L2.b)))
@@ -142,7 +145,8 @@ def Q_lower(ts, U, Cf, TAILP):
         aN = c(NSEQ[None,:]*np.ones((nt,1)))
         dd = i_add(i_mul(aN,aN), i_mul(c(bmin[:,None]), c(bmin[:,None])))
         t2 = i_div(aN, i_mul(dd,dd))
-        T2_lo, T2_hi = i_sumpad(t2[0], t2[1]); T2_hi = up(T2_hi + 1/(2*400.25**2))
+        T2_lo, T2_hi = i_sumpad(t2[0], t2[1])
+        T2_hi = up(up(T2_hi + up(1/(2*400.25**2))) + up(1/400.25**3))
         sup_dO  = up(((T+4.0)/2.0)*T2_hi)
         sup_d2O = up(2.5*T2_hi)
         arch_lo = dn(a1_lo + sup_dO*JNEG - (h*h/8)*SUMW_HI*sup_d2O)

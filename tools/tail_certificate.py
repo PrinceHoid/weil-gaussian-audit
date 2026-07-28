@@ -43,8 +43,12 @@ from mpmath import iv
 from sympy import primerange
 
 iv.dps = 30
+# mp working precision must exceed iv precision: interval endpoints (.a/.b) are
+# materialized as mpf at mp precision with round-to-nearest, so mp.dps < iv.dps
+# can round endpoints inward and narrow intervals (2026-07-28 audit finding).
+mp.mp.dps = 50
 
-T = 2000                 # tail threshold; T - 4 = 1996, c = (T-4)^2/4 exact integer
+T = 2000                # tail threshold; T - 4 = 1996, c = (T-4)^2/4 exact integer
 N_SERIES = 20000         # digamma-series terms for Omega(T-4)
 N_PRIME = 20000          # prime-power cutoff for S
 
@@ -105,8 +109,10 @@ arch_lower = (omega_far * (iv.sqrt(iv.pi) - q) + omega0 * q) / iv.pi
 M = arch_lower - (2 / iv.sqrt(iv.pi)) * S_upper - pole
 M_lo = mp.mpf(M.a)
 print(f"[result] M({T}) >= {mp.nstr(M_lo, 9)}")
-if M_lo <= 0:
-    raise SystemExit(f"FAILED: certified lower bound M({T}) = {mp.nstr(M_lo, 9)} is not positive")
-print(f"\nTHEOREM (certified): Q(t) >= {mp.nstr(M_lo, 6)} > 0 for every t >= {T}.")
+CLAIMED = mp.mpf("0.0791")   # safe decimal strictly below the certified endpoint
+if not M_lo > CLAIMED:
+    raise SystemExit(f"FAILED: certified lower bound M({T}) = {mp.nstr(M_lo, 9)} "
+                     f"does not clear the claimed constant {CLAIMED}")
+print(f"\nTHEOREM (certified): Q(t) >= {mp.nstr(CLAIMED, 6)} > 0 for every t >= {T}.")
 print("scope=tail of Route 001 family only; modulo lemma proofs in docs/ROUTE_001_TAIL_THEOREM.md")
 print("and mpmath.iv correctness; no bearing on Weil's universal class or RH")

@@ -38,6 +38,14 @@ and attempt to certify positivity as t varies.
   Independent audit found interval-endpoint narrowing in the tail script and
   an underestimated decreasing-series remainder in the extension. Therefore
   the claimed upgrade to all `t >= 11` is not certified.
+- (28 July 2026) Both audit findings were diagnosed, confirmed, and fixed
+  (`mp` working precision raised above `iv` precision; missing first term
+  added to the decreasing-series tails). Re-runs are unchanged at reported
+  precision, and the second defect was found to be inherited from the
+  original sweep, where its measured impact is a margin shift of at most
+  `1.0e-10` with no sign changes. Re-certification of the `t >= 11` claim
+  awaits the auditing collaborator's re-review. See
+  [`docs/INDEPENDENT_AUDIT_2026-07-28.md`](docs/INDEPENDENT_AUDIT_2026-07-28.md).
 - Per the current repository directive, do not extend the fixed-scale Route
   001 sweep beyond `t=1737`. Preserve the candidate tail argument for
   correction and review, but do not treat it as an RH bridge.
@@ -184,6 +192,14 @@ contradict RH; however, their pole moments are generally nonzero, so they are
 not automatically a bridge to the pole-neutral convolution-square Weil class.
 Do not run a larger grid without a genuinely new backward-heat invariant. See
 [`docs/ROUTE_005_ALL_SCALE_FALSIFICATION.md`](docs/ROUTE_005_ALL_SCALE_FALSIFICATION.md).
+
+**Corroboration (not human verification):** a 28 July 2026 AI audit
+machine-checked every cycle-1 identity in exact symbolic arithmetic,
+reproduced the eight-point diagnostic with 25 zeros (all values match; the
+6-of-8 monotonicity failure stands), and grounded the missing backward-heat
+invariant in the de Bruijn–Newman literature, where Rodgers–Tao's Λ ≥ 0
+already implies no generic (zeta-independent) invariant can exist. See
+[`docs/INDEPENDENT_AUDIT_2026-07-28.md`](docs/INDEPENDENT_AUDIT_2026-07-28.md).
 
 ## Route 006 — de Bruijn–Newman constant upper bound
 
