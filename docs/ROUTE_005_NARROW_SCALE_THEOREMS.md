@@ -7,17 +7,29 @@
 
 - **Theorem N5 (scale window).** \(Q_a(t) > 0\) for **every** \(a \ge 1\) and
   every \(|t| \le T_F := 3\cdot10^{12} - 100\).
-- **Theorem N6 (full line at a = 2, 3).** \(Q_2(t) \ge 5.43\) and
-  \(Q_3(t) \ge 1.23\) for all \(|t| \ge T_F\); combined with N5,
-  \(Q_2(t) > 0\) and \(Q_3(t) > 0\) for **all real** \(t\).
-- **Corollary N7.** By heat propagation from \(a = 3\):
+- **Theorem N6 (full line at certified scales).** For all \(|t| \ge T_F\):
+  \(Q_2 \ge 5.7115\), \(Q_3 \ge 1.6002\), \(Q_{3.2} \ge 0.7956\),
+  \(Q_{3.3} \ge 0.3812\), \(Q_{3.35} \ge 0.1697\); combined with N5, each
+  of these scales has \(Q_a(t) > 0\) for **all real** \(t\). At
+  \(a = 3.4\) the certified bound goes negative (\(-0.045\)): the method
+  ceiling is located in \((3.35, 3.4)\).
+- **Corollary N7.** By heat propagation from \(a = 3.35\):
   \[
-  \boxed{\;Q_a(t) > 0 \quad\text{for every } 0 < a \le 3
+  \boxed{\;Q_a(t) > 0 \quad\text{for every } 0 < a \le 3.35
   \text{ and every } t \in \mathbb{R}.\;}
   \]
   This supersedes the cycle-2 broad-scale theorem (\(a \le 1\)) and crosses
   the \(a = 1\) barrier that Route 002 proved unreachable by positive
   mixing.
+
+*(28 Jul, second pass: Lemma N1 was sharpened — the integral comparison
+extends from \(M = \lfloor\sqrt c\rfloor\) to \(M = c - 1\), because the
+monotonicity inequality \((a^2-c)(a+1)^2 < (a^2+c)^2\) holds for all
+\(a = x + \tfrac14 \le c\), via
+\(2a^3 + a^2 - 3ca^2 - 2ca - c - c^2 < 0\). This recovers the earlier
+\(\approx 0.69\) loss: the certified \(\Omega(T_F - 4) \ge 26.8917\) is now
+within \(10^{-3}\) of the true value, which raised every margin and moved
+the certified ceiling from \(a = 3\) to \(a^* = 3.35\).)*
 
 **How the backward-heat obstruction was respected, not evaded.** Cycle 1
 proved that no generic heat argument can push positivity from \(a = 1\) to
@@ -80,7 +92,7 @@ broad-scale theorem, so N5 is stated for \(a \ge 1\).)*
 ## Lemma N1 (large-argument lower bound for Ω)
 
 For \(r > 0\), \(c = r^2/4\), \(f(x) = \frac1{x+1} - \frac{x+\frac14}{(x+\frac14)^2+c}\),
-any \(2 \le N < M := \lfloor\sqrt c\rfloor\):
+any \(2 \le N < M := c - 1\):
 \[
 \Omega(r) \;\ge\; -\gamma - \log\pi + \sum_{n=0}^{N-1} f(n)
 + \log\frac{M+1}{N+1} - \frac12\log\frac{(M+\frac14)^2+c}{(N+\frac14)^2+c}
@@ -88,12 +100,14 @@ any \(2 \le N < M := \lfloor\sqrt c\rfloor\):
 \]
 
 **Proof.** From the digamma series (cycle-2 audit, Lemma T1),
-\(\Omega(r) = -\gamma-\log\pi+\sum_{n\ge0}f(n)\). On \([N, M]\): with
-\(A(x) = \frac{x+1/4}{(x+1/4)^2+c}\), \(A'(x) = \frac{c-(x+1/4)^2}{((x+1/4)^2+c)^2}\),
-and for \(x \le \sqrt c\) either \((x+\tfrac14)^2 \le c\) (so \(f' = -\frac1{(x+1)^2} - A' < 0\))
-or \((x+\tfrac14)^2 - c \le \tfrac{\sqrt c}2 + \tfrac1{16}\), in which case
-\(A' \le \frac{\sqrt c}{2(2c)^2/\ldots} \le \frac1{8c^{3/2}} \ll \frac1{(x+1)^2}\),
-so \(f\) is decreasing throughout \([N, M]\); hence
+\(\Omega(r) = -\gamma-\log\pi+\sum_{n\ge0}f(n)\). On \([N, M]\), \(f\) is
+decreasing: writing \(A(x) = \frac{x+1/4}{(x+1/4)^2+c}\) and \(a = x+\tfrac14\),
+\(f'(x) = -\frac1{(x+1)^2} - \frac{c-a^2}{(a^2+c)^2}\), which is negative
+immediately when \(a^2 \le c\); when \(a^2 > c\) (still with \(a \le c\)),
+\((a^2-c)(x+1)^2 \le (a^2-c)(a+1)^2\) and
+\((a^2-c)(a+1)^2 - (a^2+c)^2 = 2a^3 + a^2 - 3ca^2 - 2ca - c - c^2 < 0\)
+because \(2a^3 \le 2ca^2 < 3ca^2\) and \(a^2 \le 2ca\); so
+\(f' < 0\) throughout \(x \le c - \tfrac14\); hence
 \(\sum_{n=N}^{M-1} f(n) \ge \int_N^M f(x)\,dx\), and the antiderivative of
 \(f\) is \(\log(x+1) - \tfrac12\log((x+\tfrac14)^2+c)\), giving the two log
 terms. Beyond \(M\), split \(f\) exactly as
@@ -102,9 +116,8 @@ the first part is bounded in total by \(\frac3{4(M-1)}\), and the second by
 \(c\int_{M-1}^\infty \frac{dx}{x(x^2+c)} = \frac12\log(1+\frac{c}{(M-1)^2})\).
 Subtracting both magnitudes bounds \(\sum_{n\ge M} f(n)\) from below. ∎
 
-Certified value: \(\Omega(3\cdot10^{12}-104) \ge 26.1986\) (true value
-\(\approx 26.89\); the \(\approx0.7\) loss is the price of the elementary
-closed form and is affordable).
+Certified value: \(\Omega(3\cdot10^{12}-104) \ge 26.8917\) (true value
+\(\approx 26.8918\): the elementary closed form is now essentially sharp).
 
 ## Lemma N2 (scaled prime bound)
 
@@ -140,24 +153,27 @@ A_a(t) = \frac1\pi\int e^{-ax^2}\Omega(t+x)\,dx
 \(|{\rm pole}_a(t)| = 4e^{a/4-at^2} \le 4e^{a/4}/(aT_F^2) < 10^{-23}\) for
 \(t \ge T_F\), via \(e^{-x} \le 1/x\). ∎
 
-## Theorem N6 (full line at a = 2 and a = 3)
+## Theorem N6 (full line at certified scales)
 
 For \(t \ge T_F\), \(Q_a(t) \ge M_a(T_F) :=
 \frac1\pi[\Omega(T_F-4)(\sqrt{\pi/a}-q_a)+\Omega(0)q_a]
 - \frac2{\sqrt{\pi a}}S_a - {\rm pole}\). The certificate evaluates every
 quantity in interval arithmetic:
 \[
-M_2(T_F) \ge 5.4329,\qquad M_3(T_F) \ge 1.2353 .
+M_2 \ge 5.7115,\quad M_3 \ge 1.6002,\quad M_{3.2} \ge 0.7956,\quad
+M_{3.3} \ge 0.3812,\quad M_{3.35} \ge 0.1697,
 \]
-With Theorem N5 on \(|t| \le T_F\) and evenness: \(Q_2 > 0\) and
-\(Q_3 > 0\) on all of \(\mathbb R\). ∎
+while \(M_{3.4}\)'s certified bound is negative: the ceiling lies in
+\((3.35, 3.4)\). With Theorem N5 on \(|t| \le T_F\) and evenness:
+\(Q_a > 0\) on all of \(\mathbb R\) at each certified scale. ∎
 
-## Corollary N7 (all scales up to 3)
+## Corollary N7 (all scales up to 3.35)
 
-\(\sqrt a\,Q_a = K_s * \big[\sqrt3\,Q_3\big]\) with
-\(s = \frac1{4a} - \frac1{12} > 0\) for \(a < 3\) (cycle-2 Lemma B5 with
-base scale 3). Strict positivity of \(Q_3\) and positivity of the kernel
-give \(Q_a(t) > 0\) for all \(0 < a \le 3\), \(t \in \mathbb R\). ∎
+\(\sqrt a\,Q_a = K_s * \big[\sqrt{3.35}\,Q_{3.35}\big]\) with
+\(s = \frac1{4a} - \frac1{13.4} > 0\) for \(a < 3.35\) (cycle-2 Lemma B5
+with base scale 3.35). Strict positivity of \(Q_{3.35}\) and positivity of
+the kernel give \(Q_a(t) > 0\) for all \(0 < a \le 3.35\),
+\(t \in \mathbb R\). ∎
 
 ## Honest accounting
 

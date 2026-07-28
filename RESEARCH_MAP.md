@@ -217,15 +217,28 @@ step toward proving RH by itself. See
 `a = 1` barrier is crossed using zeta-specific input, exactly as cycle 1
 demanded: verified zeros power a scale-window theorem
 (`Q_a(t) > 0` for every `a >= 1` and `|t| <= 3e12 - 100`), a generalized
-prime-side tail theorem certifies the far tail at `a = 2` (margin 5.43)
-and `a = 3` (margin 1.24), and benign-direction heat propagation from
-`a = 3` yields `Q_a(t) > 0` for every `0 < a <= 3` and every real `t`,
-unconditionally. The method has a structural ceiling at
-`a_max(3e12) ~ 3.3` (and `a_max ~ 4 log log H` in the verified height H),
-which now localizes the program's entire remaining difficulty in one
-quantitative question: bounding the prime sum with its oscillation
-retained. Certificate: `tools/narrow_scale_certificate.py`. See
+prime-side tail theorem certifies the far tail at
+`a in {2, 3, 3.2, 3.3, 3.35}` (margins 5.71 down to 0.17; `a = 3.4`
+fails, locating the ceiling in `(3.35, 3.4)`), and benign-direction heat
+propagation yields `Q_a(t) > 0` for every `0 < a <= 3.35` and every real
+`t`, unconditionally. The structural ceiling obeys
+`a_max ~ 4 log log H` in the verified height H, which localizes the
+program's entire remaining difficulty in one quantitative question:
+bounding the prime sum with its oscillation retained. Certificate:
+`tools/narrow_scale_certificate.py`. See
 [`docs/ROUTE_005_NARROW_SCALE_THEOREMS.md`](docs/ROUTE_005_NARROW_SCALE_THEOREMS.md).
+
+**Scale–strip duality (28 July 2026, candidate):** an effective detection
+theorem prices the wall from the other side: full-line positivity at
+scale `a` (with on-line knowledge in an O(1) window) confines any
+off-line zero at height `T` to `|beta - 1/2| <~ sqrt((log log T)/a)`,
+non-vacuous exactly when `a > ~4 log log T`. The family converts between
+scale and double-exponential height at par, so any unconditional
+positivity proof beyond the ceiling would immediately yield new
+zero-confinement beyond all current verification. The full determining
+property (`all a, t` positivity implies RH) remains open due to a
+clustering case, documented honestly. See
+[`docs/ROUTE_005_SCALE_STRIP_DUALITY.md`](docs/ROUTE_005_SCALE_STRIP_DUALITY.md).
 
 ## Route 006 — de Bruijn–Newman constant upper bound
 

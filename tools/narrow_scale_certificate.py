@@ -8,13 +8,16 @@ precision per the 2026-07-28 audit), the prime-side bound
 
 for a in {2, 3}, where (docs/ROUTE_005_NARROW_SCALE_THEOREMS.md, Lemmas N1-N4):
 
-  N1 (large-argument Omega lower bound). With f(n) = 1/(n+1) -
-     (n+1/4)/((n+1/4)^2+c), c = r^2/4, and M = floor(sqrt(c)):
+  N1' (large-argument Omega lower bound, sharpened 28 Jul). With
+     f(n) = 1/(n+1) - (n+1/4)/((n+1/4)^2+c), c = r^2/4, and M = c - 1:
        Omega(r) >= -gamma - log(pi) + sum_{n<N} f(n)
                    + log((M+1)/(N+1)) - (1/2) log(((M+1/4)^2+c)/((N+1/4)^2+c))
                    - 3/(4(M-1)) - (1/2) log(1 + c/(M-1)^2).
-     (f > 0 and decreasing on [N, M]; the sum beyond M is bounded by the
-     two subtracted terms.)
+     f is decreasing on [N, M] for the full range x + 1/4 <= c: when
+     (x+1/4)^2 <= c this is immediate; otherwise
+     (a^2-c)(a+1)^2 - (a^2+c)^2 = 2a^3 + a^2 - 3ca^2 - 2ca - c - c^2 < 0
+     for a := x+1/4 <= c. Extending the comparison from sqrt(c) to c
+     recovers the ~log(2)/2 x 2 loss of the earlier version.
 
   N2 (scaled prime bound). S_a <= finite sum over prime powers n <= N_P
      plus tail e^{a/4} e^{-v0^2/(4a)} (2a + 2a^2/v0), v0 = log(N_P) - a,
@@ -49,8 +52,9 @@ H = 3 * 10**12            # Platt-Trudgian verified height
 T_F = H - 100             # tail threshold
 R = T_F - 4               # archimedean window edge argument
 N_SERIES = 100_000        # digamma-series finite part
-N_PRIME = 20_000          # prime-power cutoff
-A_VALUES = (2, 3)
+N_PRIME = 50_000          # prime-power cutoff
+A_VALUES = (2, 3)         # must certify
+A_CEILING = (3.2, 3.3, 3.35, 3.4)   # ceiling squeeze: certify as many as possible
 
 try:
     EULER = +iv.euler
@@ -66,7 +70,7 @@ series = iv.mpf(0)
 for n in range(N_SERIES):
     fn = 4 * n + 1
     series += iv.mpf(1) / (n + 1) - iv.mpf(4 * fn) / (fn * fn + 4 * c4)
-M = math.isqrt(c4 // 4)          # floor(sqrt(c))
+M = c4 // 4 - 1                  # c - 1: full range of the monotonicity proof
 intN = (iv.log(iv.mpf(M + 1)) - iv.log(iv.mpf(N_SERIES + 1))
         - (iv.log(iv.mpf((4 * M + 1) ** 2 + 4 * c4))
            - iv.log(iv.mpf((4 * N_SERIES + 1) ** 2 + 4 * c4))) / 2)
@@ -89,29 +93,44 @@ for p in primerange(2, N_PRIME + 1):
         pk *= p
 print(f"[N2] {len(prime_terms)} prime-power terms up to {N_PRIME}")
 
-def S_upper(a: int) -> iv.mpf:
-    assert mp.log(N_PRIME) >= max(2, 2 * a), "N2 monotonicity condition"
+def S_upper(a: iv.mpf):
+    assert mp.log(N_PRIME) >= max(2, 2 * mp.mpf(a.b)), "N2 monotonicity condition"
     s = iv.mpf(0)
     for u, w in prime_terms:
         s += w * iv.exp(-u * u / (4 * a))
     v0 = iv.log(iv.mpf(N_PRIME)) - a
-    tail = iv.exp(iv.mpf(a) / 4) * iv.exp(-v0 * v0 / (4 * a)) * (2 * a + 2 * a * a / v0)
+    tail = iv.exp(a / 4) * iv.exp(-v0 * v0 / (4 * a)) * (2 * a + 2 * a * a / v0)
     return iv.mpf(mp.mpf((s + tail).b)), iv.mpf(mp.mpf(tail.b))
 
-# ---------- Theorem N: assemble M_a(T_F) for a in {2, 3} ----------
-results = {}
-for a in A_VALUES:
+# ---------- Theorem N: assemble M_a(T_F) ----------
+def certify(a_str: str):
+    a = iv.mpf(a_str)
     S_ub, S_tail = S_upper(a)
-    q_a = iv.exp(iv.mpf(-16 * a)) / (4 * a)
-    pole = 4 * iv.exp(iv.mpf(a) / 4) / (a * iv.mpf(T_F) ** 2)      # e^{-x} <= 1/x
+    q_a = iv.exp(-16 * a) / (4 * a)
+    pole = 4 * iv.exp(a / 4) / (a * iv.mpf(T_F) ** 2)              # e^{-x} <= 1/x
     arch_lo = (omega_R_lo * (iv.sqrt(iv.pi / a) - q_a) + omega0 * q_a) / iv.pi
     M_a = arch_lo - (2 / iv.sqrt(iv.pi * a)) * S_ub - pole
     M_lo = mp.mpf(M_a.a)
-    results[a] = M_lo
-    print(f"[N ] a={a}: S_a <= {mp.nstr(mp.mpf(S_ub.b), 10)} (tail {mp.nstr(mp.mpf(S_tail.b), 3)}), "
-          f"pole <= {mp.nstr(mp.mpf(pole.b), 3)}  =>  M_{a}(T_F) >= {mp.nstr(M_lo, 8)}")
+    print(f"[N ] a={a_str}: S_a <= {mp.nstr(mp.mpf(S_ub.b), 10)} (tail {mp.nstr(mp.mpf(S_tail.b), 3)}), "
+          f"pole <= {mp.nstr(mp.mpf(pole.b), 3)}  =>  M_a(T_F) >= {mp.nstr(M_lo, 8)}")
+    return M_lo
+
+results = {}
+for a in A_VALUES:
+    M_lo = certify(str(a))
+    results[str(a)] = M_lo
     if M_lo <= 0:
         raise SystemExit(f"FAILED: M_{a}(T_F) not certified positive")
+best = str(A_VALUES[-1])
+for a_str in A_CEILING:
+    M_lo = certify(str(a_str))
+    if M_lo > 0:
+        results[str(a_str)] = M_lo
+        best = str(a_str)
+    else:
+        print(f"[N ] a={a_str}: NOT certified (method ceiling reached)")
+        break
+print(f"[N ] best certified scale: a* = {best}")
 
 # ---------- Theorem N5 constants: verified-zone covering vs tail ----------
 # covering distance D = 50 for |t| in [1000, T_F] (explicit counting), 14.14 below;
@@ -130,10 +149,10 @@ print(f"[N5] zeros guaranteed in any [T-50, T+50], T >= 1000: >= {mp.nstr(count_
       f"(needs >= 1: {count_lb >= 1})")
 assert count_lb >= 1
 
-print(f"\nTHEOREM (certified): Q_a(t) >= M_a(T_F) > 0 for all t >= {T_F}, a in {A_VALUES}:")
+print(f"\nTHEOREM (certified): Q_a(t) >= M_a(T_F) > 0 for all t >= {T_F}, at scales:")
 for a, m in results.items():
-    print(f"  a={a}:  Q_{a}(t) >= {mp.nstr(m, 6)}")
+    print(f"  a={a}:  Q_a(t) >= {mp.nstr(m, 6)}")
 print("Combined with the verified-zone theorem (|t| <= T_F) this gives full-line")
-print("positivity at a in {2, 3}, and by heat propagation for every 0 < a <= 3.")
+print(f"positivity at each certified scale, and by heat propagation for every 0 < a <= {best}.")
 print("scope=modulo lemma proofs in docs/ROUTE_005_NARROW_SCALE_THEOREMS.md, mpmath.iv,")
-print("and cited external theorems; not a statement about a > 3.3 or about RH")
+print(f"and cited external theorems; not a statement about a > {best} or about RH")
