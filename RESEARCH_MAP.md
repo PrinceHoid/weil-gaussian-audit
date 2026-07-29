@@ -250,6 +250,28 @@ analytic target must couple phase alignment to the growth of `t`. See
 and
 [`docs/ROUTE_005_DETERMINING_THEOREM.md`](docs/ROUTE_005_DETERMINING_THEOREM.md).
 
+**Cycle-5 result (29 July 2026, awaiting human review):** the certified
+frontier moves from `a = 3.35` to `a = 3.45`, in two steps. (i) Diagnosis:
+the cycle-3 failure at `a = 3.4` was dominated by prime-tail slack (tail
+bound 0.405 at cutoff 5e4 vs true remainder ~0.03); with cutoff 3e5 the
+plain pipeline certifies `a = 3.4` directly (`M_3.4(T_F) >= 0.158`).
+(ii) At `a = 69/20 = 3.45` the uniform bound genuinely fails
+(`M(T_F) >= -0.0312`), and the height-coupled strategy prescribed by
+cycle 4 closes it: a rigorous penalty budget
+(`Pen(t) >= 0.0514 => Q(t) > 0` on `[3e12-100, 4.5e12]`), an anchor lemma
+confining bad `t` to 1.655e11 explicit intervals, and an exact
+integer-arithmetic phase sieve clearing every interval (zero survivors);
+the tail theorem takes over at `4.5e12` (margin 0.0919). Heat propagation
+extends positivity to every `0 < a <= 3.45`. No verified-zero input enters
+the sieve segment; Proposition O1 is respected (the saving is
+height-coupled). Next wall at `a = 3.5`: budget 0.3671, tail takeover
+~7e12 — exact constants recorded. Certificate:
+`tools/phase_height_certificate.py`, `tools/phase_sieve.c`; independent
+checker: `tools/verify_phase_height.py`. A limited baseline audit of the
+cycle-4 determining theorem found no fatal gap
+([`docs/AUDIT_2026-07-29_DETERMINING.md`](docs/AUDIT_2026-07-29_DETERMINING.md)).
+See [`docs/ROUTE_005_PHASE_HEIGHT_CERTIFICATE.md`](docs/ROUTE_005_PHASE_HEIGHT_CERTIFICATE.md).
+
 ## Route 006 — de Bruijn–Newman constant upper bound
 
 **Status:** Proposed; best fit for this repository's strengths.
