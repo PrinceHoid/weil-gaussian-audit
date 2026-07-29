@@ -9,11 +9,17 @@
 This is the **Riemann Hypothesis (RH)**. It remains unsolved.
 
 > [!CAUTION]
-> # AGENTS: STOP AND READ BEFORE ROUTE WORK
+> # AGENTS: USE THE SHORT STARTUP PATH
 >
-> **Read the mandatory [PR #6 / PR #7 handoff in `AGENTS.md`](AGENTS.md) before proposing, renumbering, editing, or merging any research route.**
+> **Read [`AGENTS.md`](AGENTS.md), then
+> [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md), then the assigned GitHub
+> issue. Do not automatically audit every route or open pull request.**
 >
-> **Route 004 is reserved for the spectral-convergence program in [PR #6](https://github.com/PrinceHoid/weil-gaussian-audit/pull/6). [PR #7](https://github.com/PrinceHoid/weil-gaussian-audit/pull/7) contains useful candidate material, but it currently has a numbering collision and unresolved certification errors and must not be merged wholesale. Neither PR proves or disproves RH.**
+> **Route 004 is reserved for the spectral-convergence program in
+> [PR #6](https://github.com/PrinceHoid/weil-gaussian-audit/pull/6). PR #7
+> contains candidate material that must not be merged wholesale. Neither PR
+> proves or disproves RH. Fetch either PR only when the assigned task requires
+> it.**
 
 ## Mission of this repository
 
@@ -58,11 +64,12 @@ repository and not as a claimed advance toward RH. See
 
 ## Start here
 
-- Humans: read [RESEARCH_MAP.md](RESEARCH_MAP.md) and
-  [NEXT_STEPS.md](NEXT_STEPS.md).
-- AI assistants: also follow [AGENTS.md](AGENTS.md).
+- Short current status: [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md).
+- Humans seeking full background: read [RESEARCH_MAP.md](RESEARCH_MAP.md) and
+  [NEXT_STEPS.md](NEXT_STEPS.md) only as needed.
+- AI assistants: follow [AGENTS.md](AGENTS.md) and the assigned issue.
 - Historical Gaussian materials remain under `docs/`, `src/`, `data/`, and
-  `tools/`.
+  `tools/` and should not be loaded by default.
 
 ## Standards
 
