@@ -272,6 +272,27 @@ cycle-4 determining theorem found no fatal gap
 ([`docs/AUDIT_2026-07-29_DETERMINING.md`](docs/AUDIT_2026-07-29_DETERMINING.md)).
 See [`docs/ROUTE_005_PHASE_HEIGHT_CERTIFICATE.md`](docs/ROUTE_005_PHASE_HEIGHT_CERTIFICATE.md).
 
+**Cycle-6 result (29 July 2026, candidate, awaiting human review):** the
+single-scale detection estimate rejected by the cycle-4 audit is
+**repaired**. All four findings are addressed — complete-quartet
+extraction (findings 1–2, exact identity), a log-weighted Gaussian
+lattice-sum lemma (finding 3), and restriction to the informative regime
+`a y0^2 >= 1`, which bounds the window `Delta <= 2 + pi/2 < 3.5709`
+uniformly (finding 4). Theorem D' is an effective conditional
+zero-confinement theorem with explicit constants: positivity at scale `a`
+forces `|beta-1/2| <= sqrt(u_max/a)` with
+`u_max = (L + sqrt(L^2+pi^2))/2`, `L = log log gamma + O_a(1)`. The
+`4 log log T` exchange law is therefore proved, not heuristic. It is
+**vacuous at every certified scale**: non-vacuity at height `3e12`
+requires `a > 19.68` against the certified frontier `a = 3.45`, and since
+sieve cost grows like `exp(2 S_a)` with `S_a ~ e^{a/4}`, no incremental
+extension of the current method reaches the payoff regime — the gap is now
+priced exactly rather than estimated. Also recorded: an `a = 3.5` attempt
+failed with measured stage-1 survivor density 2.66% (~1.5e10 survivors),
+which needs a hierarchical in-C second stage. Verifier:
+`tools/verify_theorem_d_repaired.py` (9 checks, all pass). See
+[`docs/ROUTE_005_THEOREM_D_REPAIRED.md`](docs/ROUTE_005_THEOREM_D_REPAIRED.md).
+
 ## Route 006 — de Bruijn–Newman constant upper bound
 
 **Status:** Proposed; best fit for this repository's strengths.
