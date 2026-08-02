@@ -293,6 +293,33 @@ which needs a hierarchical in-C second stage. Verifier:
 `tools/verify_theorem_d_repaired.py` (9 checks, all pass). See
 [`docs/ROUTE_005_THEOREM_D_REPAIRED.md`](docs/ROUTE_005_THEOREM_D_REPAIRED.md).
 
+**Cycle-7 result (29 July 2026, candidate, awaiting human review):** the
+repository's **oldest open obligation** — `NEXT_STEPS.md` step 1, the
+admissibility/pole-neutrality question flagged in cycle 1 and repeated in
+every cycle since — is **closed for the additive family**. Subtracting the
+pole value against the normalized Gaussian `P_a(r) = exp(-a(r^2+1/4))`
+gives the closed form
+
+```text
+H_{a,t}(r) = 2 exp(-a(r^2+t^2)) [ cosh(2art) - cos(at) ],
+```
+
+which (i) satisfies **both** vanishing-moment conditions exactly
+(`H(+-i/2) = 0`), (ii) is nonnegative on R with equality only when
+`rt = 0` and `at` in `2 pi Z`, hence a genuine convolution square, and
+(iii) obeys `Q[H_{a,t}] = Q_a(t) - exp(-a t^2) cos(a t) Q_a(0)`. Theorem P5
+transfers the certified positivity: `Q[H_{a,t}] >= 0` for every
+`0 < a <= 3.45` and every real `t`, via two regimes covering R
+(`|t| <= 14.1653` by verified zeros and `cosh >= 1`; `|t| >= 14.1653` by a
+crude prime-side bound `Q_a(0) <= 23.6759`). Note this is a **signed**
+combination, so it does not follow from pointwise positivity — the Route
+002 warning applies and the `cosh >= 1` structure is what supplies the
+inequality. The frontier is unchanged and cycle 6's pricing still applies;
+what is removed is a technical objection standing since the original
+handoff. The Mellin-convention bookkeeping is still owed. Verifier:
+`tools/verify_pole_neutral_transfer.py` (11 checks, all pass). See
+[`docs/ROUTE_005_POLE_NEUTRAL_TRANSFER.md`](docs/ROUTE_005_POLE_NEUTRAL_TRANSFER.md).
+
 ## Route 006 — de Bruijn–Newman constant upper bound
 
 **Status:** Proposed; best fit for this repository's strengths.
