@@ -295,3 +295,100 @@ that vanish in the limit but are not tracked; and the `k = 4` off-diagonal
 error terms are, like `k = 3`, not bounded here. Both would need the
 paper's Montgomery–Vaughan treatment carried to four factors before `M₄`
 could be used in a theorem rather than a diagnostic.
+
+---
+
+## 7. How much could the fourth moment buy? (exploratory — NOT a theorem)
+
+> **Read this section's caveats first.** What follows is a *feasibility
+> computation*, not a proof, and it rests on `M₄` — which is derived here
+> and not verified end to end. It is recorded because it is decisive about
+> whether §6's slack is worth anyone's effort, which was the question.
+
+### 7.1 The experiment
+
+Instead of hunting for the quartic inequality directly, ask the prior
+question: **what is the smallest `s₁` consistent with the data at all?**
+Any inequality reading `M₁…M₄` is bounded above by that number, so it says
+whether the hard work could pay.
+
+Model the spectrum as a measure and impose exactly the paper's structure:
+
+- rank side: mass `s₁` on `[0,∞)` with `Σ w t ≤ s₁` (i.e. `tr P₁ ≤ s₁`);
+- remainder: any measure, its **positive-part mass** is `σ`;
+- counting: `s₁ + 2σ ≤ 1` (normalising `N = 1`);
+- moments `M₁…M_K` matched exactly.
+
+Bisecting on `s₁` with a feasibility LP over a grid of atom locations:
+
+| data used | minimum `s₁` |
+|---|---|
+| `M₁, M₂` (the paper's data) | **0.66668** |
+| `M₁, M₂, M₃` | **0.66669** |
+| `M₁…M₄` with the *extremal* `M₄ = 10/3` | **0.66678** |
+| `M₁…M₄` with the **derived** `M₄ = 49/15` | **0.74087** |
+
+The first three rows are sanity checks and all behave correctly: the LP
+reproduces `2/3` from pair-correlation data alone, confirms independently
+(by a completely different route from §4's algebra) that the third moment
+adds nothing, and confirms that if `M₄` took its extremal value nothing
+would change. Only the true `M₄` moves the number.
+
+Both moment vectors are legitimate — the Hankel matrices are positive
+definite (minors `1, 1/3, 7/135` and `1, 1/3, 2/27`) — so this is not an
+artefact of an impossible moment sequence.
+
+### 7.2 Why this is NOT a bound of 0.741
+
+Three independent gaps, any one of which is fatal to the claim:
+
+1. **`M₄` is unverified.** It is derived in §6 with verified kernel
+   identities and verified arithmetic inputs, but its off-diagonal error
+   terms are not bounded and the sharp-taper corrections are not tracked.
+   The entire effect lives in this one constant.
+2. **The LP restricts to commuting `P₁, Q'`.** Modelling the spectrum as a
+   measure assumes the eigenvalues of `Ĝ` are the union of the pieces.
+   That is a *restriction* of the true configuration set, so
+   `LP_min ≥ true_min`: the honest reading is
+   **`0.741` is an upper bound on what this data could ever give**, and the
+   truth may be anywhere in `[2/3, 0.741]`. Handling non-commuting pairs is
+   exactly what von Neumann's trace inequality does in the paper's Lemma
+   3.2, and is exactly what a quartic version would have to redo. (Mild
+   encouragement: for `M₁, M₂` the commuting restriction costs nothing —
+   the LP returns `2/3` on the nose — so the extremiser there *is*
+   commuting.)
+3. **No inequality has been proved.** Even granting 1 and 2, one still needs
+   the explicit quartic rank–trace inequality of §6.4 to turn feasibility
+   into a theorem.
+
+### 7.3 Scope against the paper's own ceiling
+
+`0.741` exceeds the `0.68185` ceiling stated in the paper's Remark 1.1.
+This is **not** a contradiction: that ceiling is explicitly scoped to
+"this bandwidth-one data", i.e. the *pair* correlation `M₁, M₂`. `M₃` and
+`M₄` are triple and quadruple correlations of zeros, outside that scope.
+But the observation cuts both ways — it means the extra input is doing all
+the work, and that input is precisely the part not verified end to end.
+Anyone pursuing this should verify `M₄` before anything else.
+
+### 7.4 Verdict
+
+The slack found in §6 is **not negligible**: under the stated assumptions
+it could be worth roughly `0.741 − 0.667 ≈ 0.074` in the constant, which
+would be a large improvement rather than a rounding error. That is enough
+to justify the work in §6.4, and it changes this direction's status from
+"closed" (as claimed hours earlier) to **"open, quantified, and worth a
+specialist's attention"**.
+
+The order of work is now clear, and each step gates the next:
+
+1. **Verify `M₄`** — bound the off-diagonal terms for the 4-cycle kernel
+   (Montgomery–Vaughan carried to four factors). If `M₄ ≠ 49/15`, stop.
+2. **Settle the commuting question** — does a non-commuting configuration
+   beat `0.741`? If it drops to `2/3`, stop.
+3. **Prove the quartic rank–trace inequality** (§6.4) and see what constant
+   actually falls out.
+
+Steps 1 and 2 are both falsification tests in this repository's usual
+style: cheap relative to step 3, and either one can kill the direction
+outright.

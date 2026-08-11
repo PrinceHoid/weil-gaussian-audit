@@ -367,7 +367,21 @@ moments, so the extremiser of the rank-trace step is not realised and the
 that slack into a better constant needs a rank-trace inequality that
 consumes a fourth moment, which we do not have; the precise, bounded
 linear-algebra problem is stated in the document. This corrects a
-prediction made earlier the same day and is left visible. Verifier:
+prediction made earlier the same day and is left visible.
+
+**How much could it buy (exploratory, NOT a theorem).** A feasibility LP
+asking for the smallest `s1` consistent with the data returns `0.66668`
+from `M1,M2` alone (correctly reproducing `2/3`), `0.66669` adding `M3`
+(independently confirming the k=3 no-go by a different route), `0.66678`
+if `M4` took its extremal value -- and **`0.74087` with the derived
+`M4 = 49/15`**. Three gaps make this an upper bound on what the data could
+give rather than a bound on the zeros: `M4` is unverified end-to-end, the
+LP restricts to commuting `P1, Q'` (so `LP_min >= true_min`), and no
+inequality has been proved. It does not contradict the paper's `0.68185`
+ceiling, which is scoped to pair-correlation data only. The gating order is
+(1) verify `M4`, (2) settle the commuting question, (3) prove the quartic
+inequality -- steps 1 and 2 are cheap falsification tests that can each
+kill the direction. Verifier:
 `tools/third_moment_probe.py` (14 checks, all pass). See
 [`docs/THIRD_MOMENT_NO_GO.md`](docs/THIRD_MOMENT_NO_GO.md).
 
