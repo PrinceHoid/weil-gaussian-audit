@@ -320,6 +320,27 @@ handoff. The Mellin-convention bookkeeping is still owed. Verifier:
 `tools/verify_pole_neutral_transfer.py` (11 checks, all pass). See
 [`docs/ROUTE_005_POLE_NEUTRAL_TRANSFER.md`](docs/ROUTE_005_POLE_NEUTRAL_TRANSFER.md).
 
+**External result superseding this route's ambitions (11 Aug 2026).** A
+vetted external paper proves unconditionally that at least `2/3` of the
+zeros are simple and on the critical line (`0.6725` optimised), and `5/6`
+are distinct — improving the previous unconditional records `5/12` and
+`0.6603`. Its mechanism is precisely what every cycle here was missing:
+instead of asking the zero side for **positivity** (which is RH-hard, our
+cycle-4 Theorem G0/G3), it asks for **inertia** — an off-line pair
+`{rho, 1-conj(rho)}` contributes a hyperbolic block of signature `(1,1)`
+to a finite Gabor compression of Weil's form, independent of its depth off
+the line, with no window hypothesis and no verified-zero input. Our cycle-6
+Theorem D' detected off-line zeros by *magnitude* (priced at
+`a ~ 4 log log T`, hence vacuous); the external argument detects them by
+*sign structure*, which is free. Its `lambda <= 1` restriction is our
+Proposition O1 seen from the other side — independent corroboration that
+the Hardy-Littlewood wall is real. An independent mechanical reproduction
+of its linear-algebraic core (19 checks, all pass) is in
+`tools/audit_two_thirds_paper.py`; see
+[`docs/EXTERNAL_2026-08-11_TWO_THIRDS.md`](docs/EXTERNAL_2026-08-11_TWO_THIRDS.md)
+for the comparison and for the one direction it leaves open (third and
+higher moments of the compression).
+
 ## Route 006 — de Bruijn–Newman constant upper bound
 
 **Status:** Proposed; best fit for this repository's strengths.
