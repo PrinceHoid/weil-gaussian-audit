@@ -338,8 +338,29 @@ the Hardy-Littlewood wall is real. An independent mechanical reproduction
 of its linear-algebraic core (19 checks, all pass) is in
 `tools/audit_two_thirds_paper.py`; see
 [`docs/EXTERNAL_2026-08-11_TWO_THIRDS.md`](docs/EXTERNAL_2026-08-11_TWO_THIRDS.md)
-for the comparison and for the one direction it leaves open (third and
+for the comparison and for the one direction it left open (third and
 higher moments of the compression).
+
+**That open direction is now closed (11 Aug 2026, candidate).** Applying
+the paper's sampling identity three times gives a triangle kernel and
+`tr Ghat^3 = (1 + 1/lambda^2) N`. Two findings. (i) The third moment needs
+**no** Hardy-Littlewood input: its resonance condition `n1 n2 = n3` with
+`Lambda(n1 n2) != 0` forces same-prime triples, and
+`sum_p (log p)^3/(p-1)^2 = 2.3156...` converges. So it is unconditionally
+available at bandwidth `lambda <= 1`, exactly like the second. (ii) But it
+certifies nothing new: the extremal spectrum of the rank-trace step is
+two-point (`s1` ones, `s2+p` twos), and every `{1,2}`-spectrum satisfies
+`M3 = 3 M2 - 2 M1` identically. The gap between the true third moment and
+that prediction is exactly `(1 - lambda)^3 / lambda^2` -- a **triple root
+at `lambda = 1`**, which is precisely where `H(lambda)` is maximised. At
+`lambda = 1` the extremal spectrum is `(2/3)N` ones and `(1/6)N` twos and
+saturates the counting constraint with equality, so the rank-trace
+inequality, the moment data and the counting bound are simultaneously
+tight. Any improvement must therefore come from bandwidth (`lambda > 1`,
+the Hardy-Littlewood wall our Prop O1 met from the other side) or a
+different spectral functional -- not from higher moments. Verifier:
+`tools/third_moment_probe.py` (10 checks, all pass). See
+[`docs/THIRD_MOMENT_NO_GO.md`](docs/THIRD_MOMENT_NO_GO.md).
 
 ## Route 006 — de Bruijn–Newman constant upper bound
 
