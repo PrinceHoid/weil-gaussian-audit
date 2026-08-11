@@ -147,6 +147,56 @@ check("M4 lambda=1 extremal spectrum is (2/3) ones + (1/6) twos",
 check("M5 that spectrum saturates the counting constraint N >= s1 + 2(s2+p)",
       sp.simplify(x1[xx] + 2 * x1[yy] - 1) == 0, "equality, i.e. the bound is tight")
 
+# ---------------- (F) the FOURTH moment: does the pattern continue? ------
+# tr G^k kernel is the k-CYCLE prod_i Phi(tau_i - tau_{i+1}).
+# General terms (sharp-taper limit, prime density y dy on [0,L]):
+#   mu^k          -> N / lam^{k-1}
+#   mu^{k-2} P P  -> C(k,2) lam^{3-k} N / 3      [reproduces k=2,3 exactly]
+#   P P P P       -> only at k >= 4; resonance forces PAIRINGS n_i = n_j with
+#                    opposite signs (all-same-prime configs are O(1)).
+# Enumerating 3 pairings x 4 sign choices for the 4-cycle gives spreads
+#   4 configs with max(y,z),  8 configs with y+z          (machine-enumerated)
+# so the weight is 4(L-max(y,z))_+ + 8(L-y-z)_+ and
+#   S = int int y z [.] = 4(L^5/20) + 8(L^5/120) = 4 L^5 / 15
+#   ==> PPPP contributes (4/15) lam N.
+kk = sp.Symbol("k", positive=True, integer=True)
+
+
+def M_of(k):
+    m = lam ** (1 - k) + sp.binomial(k, 2) * lam ** (3 - k) / 3
+    if k == 4:
+        m += sp.Rational(4, 15) * lam
+    return sp.simplify(m)
+
+
+check("F1 general mu^{k-2}PP term reproduces the k=2 and k=3 values",
+      sp.simplify(M_of(2) - (1 / lam + lam / 3)) == 0
+      and sp.simplify(M_of(3) - (1 + 1 / lam ** 2)) == 0)
+
+I1 = 2 * sp.integrate(sp.integrate(sp.Symbol("y") * sp.Symbol("z") * (sp.Symbol("L") - sp.Symbol("y")),
+                                   (sp.Symbol("z"), 0, sp.Symbol("y"))), (sp.Symbol("y"), 0, sp.Symbol("L")))
+I2 = sp.integrate(sp.integrate(sp.Symbol("y") * sp.Symbol("z") * (sp.Symbol("L") - sp.Symbol("y") - sp.Symbol("z")),
+                               (sp.Symbol("z"), 0, sp.Symbol("L") - sp.Symbol("y"))), (sp.Symbol("y"), 0, sp.Symbol("L")))
+check("F2 pairing integrals I1 = L^5/20, I2 = L^5/120, S = 4L^5/15",
+      sp.simplify(I1 - sp.Symbol("L") ** 5 / 20) == 0
+      and sp.simplify(I2 - sp.Symbol("L") ** 5 / 120) == 0
+      and sp.simplify(4 * I1 + 8 * I2 - sp.Rational(4, 15) * sp.Symbol("L") ** 5) == 0)
+
+# extremal prediction from M1, M2 alone
+xs, ys = sp.symbols("xs ys")
+sol = sp.solve([sp.Eq(xs + 2 * ys, M_of(1)), sp.Eq(xs + 4 * ys, M_of(2))], [xs, ys])
+ext = lambda k: sp.simplify(sol[xs] + 2 ** k * sol[ys])
+gap4 = sp.simplify(M_of(4) - ext(4))
+check("F3 the FOURTH moment DIFFERS from the extremal prediction at lambda=1",
+      sp.simplify(gap4.subs(lam, 1)) == sp.Rational(-1, 15),
+      f"M4 = {sp.nsimplify(M_of(4).subs(lam,1))} vs extremal "
+      f"{sp.nsimplify(ext(4).subs(lam,1))}, gap = {sp.nsimplify(gap4.subs(lam,1))}")
+check("F4 so NO {0,1,2}-supported spectrum matches all four moments",
+      sp.simplify(gap4.subs(lam, 1)) != 0,
+      "the two-point extremiser of the rank-trace step is INFEASIBLE at k=4")
+print(f"    M4/N = {M_of(4)}")
+print(f"    gap4(lambda) = {sp.factor(gap4)}")
+
 # ---------------- (K) kernel identities, recomputed here ----------------
 L_k, w_k = 30.0, 3.0
 us = np.linspace(-L_k / 2, L_k / 2, 20001)

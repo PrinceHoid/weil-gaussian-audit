@@ -356,10 +356,19 @@ at `lambda = 1`**, which is precisely where `H(lambda)` is maximised. At
 `lambda = 1` the extremal spectrum is `(2/3)N` ones and `(1/6)N` twos and
 saturates the counting constraint with equality, so the rank-trace
 inequality, the moment data and the counting bound are simultaneously
-tight. Any improvement must therefore come from bandwidth (`lambda > 1`,
-the Hardy-Littlewood wall our Prop O1 met from the other side) or a
-different spectral functional -- not from higher moments. Verifier:
-`tools/third_moment_probe.py` (10 checks, all pass). See
+tight. **But the pattern breaks at `k = 4`.** The 4-cycle kernel adds a genuine
+four-prime term (resonance forces pairings; machine-enumerated as 4
+configurations of spread `max(y,z)` and 8 of spread `y+z`, giving
+`(4/15) lambda N`), so `M4/N = 1/lambda^3 + 2/lambda + 4 lambda/15`, which
+at `lambda = 1` is `49/15` against an extremal prediction of `50/15`.
+The gap is `-N/15`: **no spectrum supported on `{0,1,2}` matches all four
+moments, so the extremiser of the rank-trace step is not realised and the
+`2/3` constant is not certified optimal by the moment data.** Converting
+that slack into a better constant needs a rank-trace inequality that
+consumes a fourth moment, which we do not have; the precise, bounded
+linear-algebra problem is stated in the document. This corrects a
+prediction made earlier the same day and is left visible. Verifier:
+`tools/third_moment_probe.py` (14 checks, all pass). See
 [`docs/THIRD_MOMENT_NO_GO.md`](docs/THIRD_MOMENT_NO_GO.md).
 
 ## Route 006 — de Bruijn–Newman constant upper bound

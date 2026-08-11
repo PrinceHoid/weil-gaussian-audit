@@ -1,8 +1,17 @@
-# The third moment does not improve 2/3 — a closed direction
+# Moments of the compression: the third is exactly useless, the fourth is not
+
+> **Correction notice (same day).** An earlier version of this document
+> closed the moment direction outright and predicted that `k = 4` "also
+> agrees at `λ = 1`". **That prediction is false.** The fourth moment is
+> computed in §6 below and *differs* from the extremal prediction by
+> `−N/15`, which reopens the direction. The `k = 3` analysis (§§1–5) is
+> unaffected and stands. The prediction is left visible rather than
+> silently deleted, per this repository's practice.
 
 **Date:** 11 August 2026. **Status:** candidate derivation plus a proved
-no-go; machine-checked by `tools/third_moment_probe.py` (10 checks, all
-pass). Human review required before any claim of novelty.
+no-go at `k = 3`, and a REOPENING at `k = 4`; machine-checked by
+`tools/third_moment_probe.py` (14 checks, all pass). Human review required
+before any claim of novelty.
 
 ## The question
 
@@ -132,18 +141,18 @@ of, the paper's own `0.68185` ceiling claim.
 
 ## Consequences
 
-1. **This direction is closed.** Adjoining `tr G̃³` cannot beat `2/3`. Any
-   future improvement must come from **bandwidth** (`λ > 1`, the
-   Hardy–Littlewood wall, which this repository's Proposition O1 met from
-   the other side) or from a genuinely different functional of the
-   spectrum — not from higher moments of the same compression.
-2. **Higher moments are presumably worse, and cheaply so.** The same
-   same-prime collapse should make `tr G̃^k` unconditionally computable at
-   `λ ≤ 1` for every fixed `k`; but the `{1,2}`-spectrum is determined by
-   two parameters, so *every* higher moment is a fixed function of `M₁, M₂`
-   at the extremiser. The next collaborator can test `k = 4` in minutes by
-   the same route; the prediction is that it also agrees at `λ = 1`.
-3. **What is not claimed.** RH; any improvement of `2/3`; novelty (the
+1. **The `k = 3` direction is closed.** Adjoining `tr G̃³` cannot beat
+   `2/3`. But this does *not* close the moment direction as a whole — see
+   §6, where `k = 4` breaks the pattern. The other routes to improvement
+   remain **bandwidth** (`λ > 1`, the Hardy–Littlewood wall, which this
+   repository's Proposition O1 met from the other side) and a genuinely
+   different functional of the spectrum.
+2. ~~**Higher moments are presumably worse.**~~ **This was wrong — see §6.**
+   The reasoning ("every higher moment is a fixed function of `M₁, M₂` at
+   the extremiser") is correct, but that is exactly *why* a disagreement at
+   `k = 4` is informative: it shows the extremiser is not realised.
+3. **What is not claimed.** RH; any improvement of `2/3` (see §6.4 for
+   exactly why the `k = 4` slack does not yet yield one); novelty (the
    moment computation is a routine extension of Montgomery's and may be
    known). The off-diagonal error terms in `tr G̃³` are **not** bounded
    here — that would need the paper's Montgomery–Vaughan treatment carried
@@ -179,3 +188,110 @@ python tools/third_moment_probe.py
   (1973), for the moment machinery being extended.
 - This repository: `docs/EXTERNAL_2026-08-11_TWO_THIRDS.md`,
   `docs/ROUTE_005_DETERMINING_THEOREM.md` (Prop. O1).
+
+---
+
+## 6. The fourth moment — where the pattern breaks
+
+### 6.1 The general moment skeleton
+
+The `tr G^k` kernel is the **k-cycle** `∏_i Φ(τ_i − τ_{i+1})` (for `k = 3`
+the cycle happens to be the complete graph, which is why the `k = 3` case
+looked like a triangle). Splitting `ν = μ + P` and collecting terms, in the
+sharp-taper limit with the prime density `y dy` on `[0, L]`:
+
+| term | contribution |
+|---|---|
+| `μ^k` | `N/λ^{k−1}` |
+| `μ^{k−2}PP` | `C(k,2)·λ^{3−k}·N/3` |
+| `μ^{k−3}PPP` | `o(N)` (same-prime collapse) |
+| `PPPP` | first appears at `k = 4` |
+
+The middle row is checked against the two known cases: `k = 2` gives
+`λN/3` and `k = 3` gives `N` — both exactly right (check F1). That is the
+main evidence the skeleton is correct.
+
+### 6.2 The four-prime term
+
+At `k = 4` a genuinely new term appears. Resonance forces the four
+frequencies to **pair up** with opposite signs (all-same-prime
+configurations are `O(1)`, as in §2). Machine-enumerating the 3 pairings ×
+4 sign choices against the 4-cycle kernel gives the "spread" multiset
+
+- **4** configurations with spread `max(y,z)`,
+- **8** configurations with spread `y + z`
+
+(confirmed numerically over random `(y,z)`), so the weight is
+`4(L − max(y,z))₊ + 8(L − y − z)₊`. With the density `y dy`:
+
+\[
+S=\iint yz\big[4(L-\max)_++8(L-y-z)_+\big]
+=4\cdot\tfrac{L^5}{20}+8\cdot\tfrac{L^5}{120}=\tfrac{4L^5}{15},
+\]
+
+giving a contribution of `(4/15)λN` (check F2). Hence
+
+\[
+\boxed{\;\frac{M_4}{N}=\frac1{\lambda^{3}}+\frac2{\lambda}+\frac{4\lambda}{15}\;}
+\qquad\text{and at }\lambda=1:\quad \frac{M_4}{N}=\frac{49}{15}.
+\]
+
+### 6.3 The extremal configuration is infeasible
+
+The two-point extremiser is fixed by `M₁, M₂` alone, so it *predicts*
+
+\[
+M_4^{\text{ext}}/N=\tfrac{7\lambda}{3}-6+\tfrac7\lambda
+\qquad\text{at }\lambda=1:\quad \tfrac{10}{3}=\tfrac{50}{15}.
+\]
+
+\[
+\boxed{\;\frac{49}{15}\;\neq\;\frac{50}{15},\qquad \text{gap}=-\frac{N}{15}.\;}
+\]
+
+Contrast with `k = 3`, where the gap vanished to *third* order. At `k = 4`
+it is nonzero. **No spectrum supported on `{0,1,2}` matches all four
+moments** (check F4): the actual fourth moment is *smaller*, i.e. the true
+spectrum is more concentrated than the extremiser, with less mass at the
+eigenvalue `2`.
+
+### 6.4 What this does and does not mean
+
+**Does mean.** The configuration that saturates the paper's rank–trace
+step at `λ = 1` is **not realised** by the actual matrix. So that
+inequality is not tight for `G̃`, and the `2/3` constant is *not* certified
+optimal by the moment data. There is genuine slack, and its size is now
+quantified: `N/15` in the fourth moment.
+
+**Does not mean.** That `2/3` can be improved. Converting slack into a
+better constant requires a **new inequality that consumes `M₄`**, and the
+paper's Lemma 3.2 does not: its proof (von Neumann's trace inequality
+against `x² ≥ cx − c²/4`) reads only the trace and the Frobenius norm. I do
+not have such an inequality. Nor does this contradict the paper's stated
+`0.68185` ceiling, which is a *separate, configuration-wise* argument at
+bandwidth one, and sits comfortably above `2/3`.
+
+**The precise open problem, now well posed:**
+
+> Strengthen the rank–trace inequality (Lemma 3.2) to consume a fourth
+> moment. Concretely: for Hermitian `P ⪰ 0` of rank `≤ r` and Hermitian `Q`
+> with `≤ b` positive eigenvalues, bound `r` from below in terms of
+> `tr P`, `tr Q`, `‖P+Q‖²_F` **and** `tr (P+Q)⁴`. Then feed in
+> `M₄/N = 49/15` at `λ = 1` and see whether the resulting constant exceeds
+> `2/3`. The scalar inequality being transplanted is no longer
+> `x² ≥ 2x − 1` but a quartic one; the natural candidates are the
+> nonnegative quartics `(x−1)²(x−α)² ≥ 0`.
+
+That is a bounded, self-contained linear-algebra question, and it is where
+the next hour of work on this should go. The gap `N/15` is small — any
+improvement it buys will be small too — but it is real, and the direction
+is no longer closed.
+
+### 6.5 Caveats specific to §6
+
+Same as §"Evidence levels", plus: the four-prime term uses the sharp-taper
+idealisation (`φ² ≡ 1` on `[−L/2, L/2]`), which incurs `O(w/L)` corrections
+that vanish in the limit but are not tracked; and the `k = 4` off-diagonal
+error terms are, like `k = 3`, not bounded here. Both would need the
+paper's Montgomery–Vaughan treatment carried to four factors before `M₄`
+could be used in a theorem rather than a diagnostic.
