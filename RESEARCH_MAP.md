@@ -250,6 +250,141 @@ analytic target must couple phase alignment to the growth of `t`. See
 and
 [`docs/ROUTE_005_DETERMINING_THEOREM.md`](docs/ROUTE_005_DETERMINING_THEOREM.md).
 
+**Cycle-5 result (29 July 2026, awaiting human review):** the certified
+frontier moves from `a = 3.35` to `a = 3.45`, in two steps. (i) Diagnosis:
+the cycle-3 failure at `a = 3.4` was dominated by prime-tail slack (tail
+bound 0.405 at cutoff 5e4 vs true remainder ~0.03); with cutoff 3e5 the
+plain pipeline certifies `a = 3.4` directly (`M_3.4(T_F) >= 0.158`).
+(ii) At `a = 69/20 = 3.45` the uniform bound genuinely fails
+(`M(T_F) >= -0.0312`), and the height-coupled strategy prescribed by
+cycle 4 closes it: a rigorous penalty budget
+(`Pen(t) >= 0.0514 => Q(t) > 0` on `[3e12-100, 4.5e12]`), an anchor lemma
+confining bad `t` to 1.655e11 explicit intervals, and an exact
+integer-arithmetic phase sieve clearing every interval (zero survivors);
+the tail theorem takes over at `4.5e12` (margin 0.0919). Heat propagation
+extends positivity to every `0 < a <= 3.45`. No verified-zero input enters
+the sieve segment; Proposition O1 is respected (the saving is
+height-coupled). Next wall at `a = 3.5`: budget 0.3671, tail takeover
+~7e12 — exact constants recorded. Certificate:
+`tools/phase_height_certificate.py`, `tools/phase_sieve.c`; independent
+checker: `tools/verify_phase_height.py`. A limited baseline audit of the
+cycle-4 determining theorem found no fatal gap
+([`docs/AUDIT_2026-07-29_DETERMINING.md`](docs/AUDIT_2026-07-29_DETERMINING.md)).
+See [`docs/ROUTE_005_PHASE_HEIGHT_CERTIFICATE.md`](docs/ROUTE_005_PHASE_HEIGHT_CERTIFICATE.md).
+
+**Cycle-6 result (29 July 2026, candidate, awaiting human review):** the
+single-scale detection estimate rejected by the cycle-4 audit is
+**repaired**. All four findings are addressed — complete-quartet
+extraction (findings 1–2, exact identity), a log-weighted Gaussian
+lattice-sum lemma (finding 3), and restriction to the informative regime
+`a y0^2 >= 1`, which bounds the window `Delta <= 2 + pi/2 < 3.5709`
+uniformly (finding 4). Theorem D' is an effective conditional
+zero-confinement theorem with explicit constants: positivity at scale `a`
+forces `|beta-1/2| <= sqrt(u_max/a)` with
+`u_max = (L + sqrt(L^2+pi^2))/2`, `L = log log gamma + O_a(1)`. The
+`4 log log T` exchange law is therefore proved, not heuristic. It is
+**vacuous at every certified scale**: non-vacuity at height `3e12`
+requires `a > 19.68` against the certified frontier `a = 3.45`, and since
+sieve cost grows like `exp(2 S_a)` with `S_a ~ e^{a/4}`, no incremental
+extension of the current method reaches the payoff regime — the gap is now
+priced exactly rather than estimated. Also recorded: an `a = 3.5` attempt
+failed with measured stage-1 survivor density 2.66% (~1.5e10 survivors),
+which needs a hierarchical in-C second stage. Verifier:
+`tools/verify_theorem_d_repaired.py` (9 checks, all pass). See
+[`docs/ROUTE_005_THEOREM_D_REPAIRED.md`](docs/ROUTE_005_THEOREM_D_REPAIRED.md).
+
+**Cycle-7 result (29 July 2026, candidate, awaiting human review):** the
+repository's **oldest open obligation** — `NEXT_STEPS.md` step 1, the
+admissibility/pole-neutrality question flagged in cycle 1 and repeated in
+every cycle since — is **closed for the additive family**. Subtracting the
+pole value against the normalized Gaussian `P_a(r) = exp(-a(r^2+1/4))`
+gives the closed form
+
+```text
+H_{a,t}(r) = 2 exp(-a(r^2+t^2)) [ cosh(2art) - cos(at) ],
+```
+
+which (i) satisfies **both** vanishing-moment conditions exactly
+(`H(+-i/2) = 0`), (ii) is nonnegative on R with equality only when
+`rt = 0` and `at` in `2 pi Z`, hence a genuine convolution square, and
+(iii) obeys `Q[H_{a,t}] = Q_a(t) - exp(-a t^2) cos(a t) Q_a(0)`. Theorem P5
+transfers the certified positivity: `Q[H_{a,t}] >= 0` for every
+`0 < a <= 3.45` and every real `t`, via two regimes covering R
+(`|t| <= 14.1653` by verified zeros and `cosh >= 1`; `|t| >= 14.1653` by a
+crude prime-side bound `Q_a(0) <= 23.6759`). Note this is a **signed**
+combination, so it does not follow from pointwise positivity — the Route
+002 warning applies and the `cosh >= 1` structure is what supplies the
+inequality. The frontier is unchanged and cycle 6's pricing still applies;
+what is removed is a technical objection standing since the original
+handoff. The Mellin-convention bookkeeping is still owed. Verifier:
+`tools/verify_pole_neutral_transfer.py` (11 checks, all pass). See
+[`docs/ROUTE_005_POLE_NEUTRAL_TRANSFER.md`](docs/ROUTE_005_POLE_NEUTRAL_TRANSFER.md).
+
+**External result superseding this route's ambitions (11 Aug 2026).** A
+vetted external paper proves unconditionally that at least `2/3` of the
+zeros are simple and on the critical line (`0.6725` optimised), and `5/6`
+are distinct — improving the previous unconditional records `5/12` and
+`0.6603`. Its mechanism is precisely what every cycle here was missing:
+instead of asking the zero side for **positivity** (which is RH-hard, our
+cycle-4 Theorem G0/G3), it asks for **inertia** — an off-line pair
+`{rho, 1-conj(rho)}` contributes a hyperbolic block of signature `(1,1)`
+to a finite Gabor compression of Weil's form, independent of its depth off
+the line, with no window hypothesis and no verified-zero input. Our cycle-6
+Theorem D' detected off-line zeros by *magnitude* (priced at
+`a ~ 4 log log T`, hence vacuous); the external argument detects them by
+*sign structure*, which is free. Its `lambda <= 1` restriction is our
+Proposition O1 seen from the other side — independent corroboration that
+the Hardy-Littlewood wall is real. An independent mechanical reproduction
+of its linear-algebraic core (19 checks, all pass) is in
+`tools/audit_two_thirds_paper.py`; see
+[`docs/EXTERNAL_2026-08-11_TWO_THIRDS.md`](docs/EXTERNAL_2026-08-11_TWO_THIRDS.md)
+for the comparison and for the one direction it left open (third and
+higher moments of the compression).
+
+**That open direction is now closed (11 Aug 2026, candidate).** Applying
+the paper's sampling identity three times gives a triangle kernel and
+`tr Ghat^3 = (1 + 1/lambda^2) N`. Two findings. (i) The third moment needs
+**no** Hardy-Littlewood input: its resonance condition `n1 n2 = n3` with
+`Lambda(n1 n2) != 0` forces same-prime triples, and
+`sum_p (log p)^3/(p-1)^2 = 2.3156...` converges. So it is unconditionally
+available at bandwidth `lambda <= 1`, exactly like the second. (ii) But it
+certifies nothing new: the extremal spectrum of the rank-trace step is
+two-point (`s1` ones, `s2+p` twos), and every `{1,2}`-spectrum satisfies
+`M3 = 3 M2 - 2 M1` identically. The gap between the true third moment and
+that prediction is exactly `(1 - lambda)^3 / lambda^2` -- a **triple root
+at `lambda = 1`**, which is precisely where `H(lambda)` is maximised. At
+`lambda = 1` the extremal spectrum is `(2/3)N` ones and `(1/6)N` twos and
+saturates the counting constraint with equality, so the rank-trace
+inequality, the moment data and the counting bound are simultaneously
+tight. **But the pattern breaks at `k = 4`.** The 4-cycle kernel adds a genuine
+four-prime term (resonance forces pairings; machine-enumerated as 4
+configurations of spread `max(y,z)` and 8 of spread `y+z`, giving
+`(4/15) lambda N`), so `M4/N = 1/lambda^3 + 2/lambda + 4 lambda/15`, which
+at `lambda = 1` is `49/15` against an extremal prediction of `50/15`.
+The gap is `-N/15`: **no spectrum supported on `{0,1,2}` matches all four
+moments, so the extremiser of the rank-trace step is not realised and the
+`2/3` constant is not certified optimal by the moment data.** Converting
+that slack into a better constant needs a rank-trace inequality that
+consumes a fourth moment, which we do not have; the precise, bounded
+linear-algebra problem is stated in the document. This corrects a
+prediction made earlier the same day and is left visible.
+
+**How much could it buy (exploratory, NOT a theorem).** A feasibility LP
+asking for the smallest `s1` consistent with the data returns `0.66668`
+from `M1,M2` alone (correctly reproducing `2/3`), `0.66669` adding `M3`
+(independently confirming the k=3 no-go by a different route), `0.66678`
+if `M4` took its extremal value -- and **`0.74087` with the derived
+`M4 = 49/15`**. Three gaps make this an upper bound on what the data could
+give rather than a bound on the zeros: `M4` is unverified end-to-end, the
+LP restricts to commuting `P1, Q'` (so `LP_min >= true_min`), and no
+inequality has been proved. It does not contradict the paper's `0.68185`
+ceiling, which is scoped to pair-correlation data only. The gating order is
+(1) verify `M4`, (2) settle the commuting question, (3) prove the quartic
+inequality -- steps 1 and 2 are cheap falsification tests that can each
+kill the direction. Verifier:
+`tools/third_moment_probe.py` (14 checks, all pass). See
+[`docs/THIRD_MOMENT_NO_GO.md`](docs/THIRD_MOMENT_NO_GO.md).
+
 ## Route 006 — de Bruijn–Newman constant upper bound
 
 **Status:** Proposed; best fit for this repository's strengths.

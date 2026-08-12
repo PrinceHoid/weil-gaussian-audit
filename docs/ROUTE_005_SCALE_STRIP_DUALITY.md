@@ -7,6 +7,18 @@ The all-scale clustering problem is resolved separately at the candidate-proof
 level in
 [`ROUTE_005_DETERMINING_THEOREM.md`](ROUTE_005_DETERMINING_THEOREM.md).
 
+> **Cycle-6 update (29 July 2026): the repair is complete.** All four audit
+> findings below are addressed in
+> [`ROUTE_005_THEOREM_D_REPAIRED.md`](ROUTE_005_THEOREM_D_REPAIRED.md) —
+> complete-quartet extraction (findings 1–2), a log-weighted Gaussian
+> lattice-sum lemma (finding 3), and restriction to the informative regime
+> `a y₀² ≥ 1`, which bounds `Δ ≤ 2 + π/2 < 3.5709` uniformly (finding 4).
+> Theorem D′ there carries explicit constants and is machine-checked by
+> `tools/verify_theorem_d_repaired.py`. The `4 log log T` exchange law,
+> described below as a heuristic target, is a proved consequence of the
+> repaired theorem. **The statement of Proposed Theorem D on this page is
+> still the superseded one and must not be cited.**
+
 **Purpose.** Cycle 3 located the program's remaining difficulty at scales
 \(a > a^*(H) \approx 3.35\). This document proposes an explicit
 single-scale detection estimate converting scale-\(a\) positivity into zero
@@ -140,11 +152,15 @@ produce new zero information.
    oscillation retained. Such bounds are of exponential-sum type and are
    the classical hard currency of the field; this document does not
    attempt one.
-2. **The single-scale payoff.** Repair Proposed Theorem D by extracting the
-   complete quartet, proving a logarithmically weighted Gaussian lattice-sum
-   bound, and retaining the dependence on
-   \(\Delta=2+\pi/(2ay_0)\). Until then, it is not an effective
-   zero-confinement theorem.
+2. **The single-scale payoff — RESOLVED in cycle 6.** The repair asked for
+   here (complete-quartet extraction, a logarithmically weighted Gaussian
+   lattice-sum bound, and control of \(\Delta=2+\pi/(2ay_0)\)) is carried
+   out in
+   [`ROUTE_005_THEOREM_D_REPAIRED.md`](ROUTE_005_THEOREM_D_REPAIRED.md).
+   Theorem D′ is an effective conditional zero-confinement theorem with
+   explicit constants. It remains vacuous at every scale this repository
+   has certified: non-vacuity at height \(3\cdot10^{12}\) requires
+   \(a > 19.68\) against a certified frontier of \(a = 3.45\).
 3. **Full determining property (candidate resolution in cycle 4).**
    Theorem D alone still needs its window hypothesis, but the all-scale
    statement can bypass that hypothesis. The cycle-4 dominant-profile
