@@ -17,3 +17,5 @@ jobs:
           python-version: "3.13"
       - name: Verify CSV structure and exact coverage
         run: python tools/verify_certificate_csv.py data/certificates.csv
+      - name: Verify extension CSV structure and exact coverage
+        run: python tools/verify_certificate_csv.py data/certificates_extension.csv 1737 2000
